@@ -1,0 +1,447 @@
+﻿<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>会员中心</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!-- 添加到主屏后的标题（iOS 6 新增） -->
+		<meta name="apple-mobile-web-app-title" content="百家借">
+		<!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
+		<!--<meta name="apple-mobile-web-app-capable" content="yes" />-->
+		<!-- 设置苹果工具栏颜色 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="blue" />
+		<!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+		<meta name="format-detection" content="telephone=no, email=no" />
+		<!--清除微信缓存-->
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<meta name="keywords" content="" />
+		<meta name="description" content=" " />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+
+	</head>
+	<style type="text/css">
+			body {
+			/*font-family: "microsoft yahei";*/
+			font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", STHeiti, "Microsoft Yahei", Tahoma, Simsun, sans-serif;
+			font-size: 14px;
+			color: #333333;
+			background: #FFFFFF;
+		}
+		
+		@media (max-height:600px) {
+			.personal {
+				height: 174px;
+				padding-top: 16px;
+			}
+			.personal-img img {
+				width: 100px;
+				height: 100px;
+				border: 6px solid rgba(131, 179, 255, .5);
+			}
+			.personal-img h5 {
+				font-size: 15px;
+			}
+			.personal-img i {
+				font-size: 15px;
+			}
+			.personal-list li {
+				padding: 9px 15px;
+				font-size: 13px;
+			}
+		}
+		
+		.mui-toast-container {
+			bottom: 32%;
+		}
+		
+		#login_id {
+			display: table;
+			margin: auto;
+			padding: 4px 23px;
+			background: #FFFFFF;
+			color: #007aff;
+			margin-top: 4px;
+			display: none;
+			margin-top: 100px;
+		}
+		
+		#logout-hide {
+			/*display: none;*/
+		}
+		
+		.meb-div li {
+			float: left;
+		}
+		
+		.meb-div {
+			color: #FFFFFF;
+			padding-left: 5%;
+			/*line-height: 40px;*/
+			padding-right: 5%;
+			position: relative;
+		}
+		
+		.meb-div:after {
+			content: "";
+			display: block;
+			clear: both;
+			visibility: hidden;
+		}
+		
+		.meb-div li.meb-img img {
+			width: 50px;
+			height: 50px;
+			border-radius: 100%;
+			border: 2px solid #FFFFFF;
+		}
+		
+		.meb-div li.meb-span span {
+			padding: 0 10px;
+			display: block;
+		}
+		
+		.meb-div .meb-meb {
+			float: right;
+			position: absolute;
+			top: -9px;
+			right: 12px;
+		}
+		
+		.meb-mony:after {
+			content: "";
+			display: block;
+			clear: both;
+			visibility: hidden;
+		}
+		
+		.meb-mony {
+			color: #FFFFFF;
+			padding: 21px 5%;
+		}
+		
+		.meb-mony li {
+			float: left;
+			width: 50%;
+			line-height: 30px;
+		}
+		
+		.meb-mony li span {
+			display: block;
+			text-align: center;
+		}
+		
+		.meb-mony li span:first-child {
+			font-size: 24px;
+		}
+		
+		.meb-mony li:first-child span:first-child {
+			border-right: 1px solid #FFFFFF;
+		}
+		
+		.meb-qd {
+			padding-top: 6px;
+		}
+		
+		.meb-qd p {
+			margin: 0;
+			padding: 0;
+			color: #FFFFFF;
+			text-align: center;
+			margin-bottom: 4px;
+		}
+		
+		.mui-9iment .mui-media .mui-icon {
+			font-size: 1.44em !important;
+			position: relative;
+		}
+		
+		.mui-9iment .mui-media div {
+			font-size: 12px !important;
+		}
+		
+		.mui-9iment {
+			background: #FFFFFF !important;
+			border: none !important;
+		}
+		
+		.mui-9iment .mui-table-view-cell {
+			border: none !important;
+		}
+		
+		.personal {
+			/* background: #5e99f5; */
+			/* background: #327bf4; */
+			height: 210px;
+			padding-top: 28px;
+			/*background: #4568DC;*/
+			background: -webkit-linear-gradient(to top, #4568DC, #4f8eff) url(images/beijing@3x.png)no-repeat center bottom;
+			background: #4f8eff url(images/beijing@3x.png) no-repeat center bottom;
+			background-size: 100%;
+			}
+			.mui-matchingbj {}
+			.follow_cover .fc_div {
+			    width: 70%;
+			    height: auto;
+			    background: #f5f5f5;
+			    border-radius: 6px;
+			    margin: 35% auto 0;
+			    padding-bottom: 15px;
+			}
+			.follow_cover .fc_div p{
+				text-align: center;
+			}
+			.follow_cover .fc_btn {
+			    display: block;
+			    margin: 10px auto;
+			    width: 40px;
+			    height: 40px;
+			}
+	</style>
+
+	<body>
+		<!--<header style="background: #4f8eff; -webkit-box-shadow: none;box-shadow: none;" class="mui-bar mui-bar-nav">
+	    <h1 style="color: #FFFFFF;" class="mui-title">会员中心</h1>
+	</header>-->
+		<div class="mui-content mui-personal">
+			<!--头像昵称-->
+			<div class="personal" id="member" style="">
+				<script type="text/html" id="centent">
+					<div class="meb-div">
+						<li class="meb-img"><img src="picture/58970afdcdba4c04bc3b6043a191730e.gif" alt="" /></li>
+						<li class="meb-span">
+							<span style="font-size: 14px; margin-top: 6px;">昵称：{{nickname}}</span>
+							<span style="font-size: 13px; margin-top: 4px;">等级： {{vip_name}}　上级：{{invite_nickname}}</span>
+						</li>
+						<li id="meb-meb" class="meb-meb">
+							<a href="personal.html" style="color: #fff;">个人中心</a>
+							<span style="vertical-align: -2px;" class="mui-icon mui-icon-arrowright"></span>
+						</li>
+					</div>
+					<div class="meb-mony">
+						<li>
+							<span>{{coin}}</span>
+							<span>收入余额</span>
+						</li>
+						<li>
+							<span>{{coin_tx}}</span>
+							<span>已提余额</span>
+						</li>
+					</div>
+				</script>
+				<!--<div class="meb-qd">
+        		<p>[会员等级：渠道经理]</p>
+        		<p>我的上级：亿融掌上财富</p>
+        	</div>-->
+				<!--<script type="text/html" id="centent">
+                <div class="personal-img">
+                    {{if headimgurl}}
+                    <img src="picture/58970afdcdba4c04bc3b6043a191730e.gif" /> 
+                    <h5>微信昵称：{{nickname}}</h5>
+                    <i>余额：{{coin}}元</i>
+                    {{else}}
+                    <img src="picture/bbjlogo.png" /> 
+                     <h5>姓名：{{name}}</h5>
+                    <i>余额：{{coin}}元</i>
+                    {{/if}}
+
+                </div>
+			
+            </script>
+            <button type="button" id="login_id" class="mui-btn mui-btn-primary">请登录</button>-->
+			</div>
+
+			<ul class="mui-table-view mui-grid-view mui-grid-9 mui-9iment">
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 ">
+					<a href="jk_history.html">
+						<span style="color: #4fb991;" class="mui-icon iconfont icon-fanli"></span>
+						<div class="mui-media-body">我要返利</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3">
+					<a href="piaoq.html">
+						<span style="color: #3db3fd;" class="mui-icon iconfont icon-tuiguang"></span>
+						<div class="mui-media-body">推广赚钱</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3">
+					<a  href="http://mp.weixin.qq.com/s/zH3iQn6ytMwUyWPJ2anbUg">
+						<span style="color: #3db3fd;" class="mui-icon iconfont icon-wsmp-payuser"></span>
+						<div class="mui-media-body">会员简介</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3">
+					<a id="hytq" href="#">
+						<span style="color: #fdb304;" class="mui-icon iconfont icon-huiyuantequan"></span>
+						<div class="mui-media-body">会员特权</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3">
+					<a href="Upgrade/view/upgrade.html">
+						<span style="color: #4fb991;" class="mui-icon iconfont icon-zhongshendingjihuiyuan"></span>
+						<div class="mui-media-body">升级会员</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3">
+					<a href="https://mp.weixin.qq.com/s/-TWeZJeuknyQlrKy41vPwQ">
+						<span style="color: #fdb304;" class="mui-icon iconfont icon-daikuan"></span>
+						<div class="mui-media-body">帮客户贷款</div>
+					</a>
+				</li>
+				<!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+			    <a href="#">
+			         <span style="color: #4fb991;"  class="mui-icon iconfont icon-xinkouzi"></span>
+			        <div class="mui-media-body">最新口子</div>
+			    </a>
+			</li>-->
+				
+				<li id="hyzcy" class="mui-table-view-cell mui-media mui-col-xs-3 ">
+					<a id="hyzc" href="#">
+						<span style="color: #ff8532;" class="mui-icon iconfont icon-yongjin2"></span>
+						<div class="mui-media-body">会员咨询</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 ">
+					<a href="http://a.rrjiekuan.com/bjj/proxyw/login.html">
+						<span style="color: #3bb8fb;" class="mui-icon iconfont icon-iconfonthoutai"></span>
+						<div class="mui-media-body">代理后台</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3">
+					<a href="jk_history.html">
+						<span style="color: #3bb8fb;" class="mui-icon iconfont icon-ditu-cuidan"></span>
+						<div class="mui-media-body">在线催单</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 ">
+					<a href="user_tx.html">
+						<span style="color: #d4ae1f;" class="mui-icon iconfont icon-icon1101"></span>
+						<div class="mui-media-body">我要提现</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 ">
+					<a href="tx_detail.html">
+						<span style="color: #fb3040;" class="mui-icon iconfont icon-tixianjilu1"></span>
+						<div class="mui-media-body">提现记录</div>
+					</a>
+				</li>
+
+				<!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+			    <a href="#">
+			         <span style="color: #3bb8fb;" class="mui-icon iconfont icon-gengduo"></span>
+			        <div class="mui-media-body">更多</div>
+			    </a>
+			</li>-->
+			</ul>
+
+			<!--列表-->
+			<!--<ul class="mui-table-view personal-list">
+            <li class="mui-table-view-cell">
+                <a href="http://a.rrjiekuan.com/bjj/proxyw/login.html" class="mui-navigate-right" href="piaoq.html">
+                    <i style="font-size: 24px;     padding-left: 3px; " class="iconfont icon-zhuanqian"></i>
+                    <span>返佣明细</span>
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a href="tx_detail.html" class="mui-navigate-right">
+                    <i style="font-size: 21px; " class="iconfont icon-tixianjilu1"></i>
+                    <span>提现记录</span>
+                </a>
+            </li>
+
+            <li class="mui-table-view-cell">
+                <a href="information.html" class="mui-navigate-right">
+                    <i class="iconfont icon-gerenxinxi"></i>
+                    <span>个人信息</span>
+                </a>
+            </li>
+
+            <li class="mui-table-view-cell">
+                <a href="client.html" class="mui-navigate-right">
+                    <i class="iconfont icon-a138"></i>
+                    <span>吐槽建议</span>
+                </a>
+            </li>
+
+            <li class="mui-table-view-cell">
+                <a href="gybbj.html" class="mui-navigate-right">
+                    <i style="font-size: 24px; " class="iconfont icon-guanyu"></i>
+                    <span style="padding-left: 8px;">关于百家借</span>
+                </a>
+            </li>
+
+            <li class="mui-table-view-cell">
+                <a href="jk_history.html" class="mui-navigate-right">
+                    <i style="font-size: 19px; padding-left: 10px; vertical-align: text-bottom;" class="iconfont icon-kezhuanrang-copy"></i>
+                    <span>借款历史·<span style="color: red;" >(在线催单)</span></span>
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a href="modify.html" class="mui-navigate-right">
+                    <i style="font-size: 19px; padding-left: 10px; vertical-align: text-bottom;" class="mui-icon mui-icon-locked"></i>
+                    <span>修改密码</span>
+                </a>
+            </li>
+            <li class="mui-table-view-cell" id="logout-hide">
+                <a id="logout" href="javascript:;" class="mui-navigate-right">
+                    <i style="font-size: 24px; " class="mui-icon mui-icon-undo"></i>
+                    <span style="padding-left: 8px;">清除缓存</span>
+                </a>
+            </li>
+
+        </ul>-->
+
+		</div>
+
+		<!--底部导航-->
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item" href="/首页.html">
+				<span class="mui-icon iconfont icon-shouyeshouye1" style="font-size: 23px; top: 3px;"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<!--<a class="mui-tab-item">
+	            <span class="mui-icon iconfont icon-jiekuan"></span>
+	            <span class="mui-tab-label">借款机构</span>
+	        </a>-->
+			<a href = "/百家放款.html"  class="mui-tab-item">
+				<span style="font-size: 23px;" class="mui-icon iconfont icon-guanwang"></span>
+				<span class="mui-tab-label">网贷</span>
+			</a>
+			<a href = "/借条.html" class="mui-tab-item">
+				<span class="mui-icon iconfont icon-jiekuan-xuanzhong"></span>
+				<span class="mui-tab-label">借条</span>
+			</a>
+			<a class="mui-tab-item">
+				<span style="font-size: 23px;" class="mui-icon iconfont icon-3zuixinkouzid45616"></span>
+				<span class="mui-tab-label">新口子</span>
+			</a>
+			<!--<a class="mui-tab-item">
+	            <span class="mui-icon iconfont icon-yaoqing1"></span>
+	            <span class="mui-tab-label">邀请</span>
+	        </a>-->
+			<a	class="mui-tab-item mui-active">
+				<span class="mui-icon iconfont icon-mg-user"></span>
+				<span class="mui-tab-label">会员中心</span>
+			</a>
+		</nav>
+		<div class="follow_cover follow_cover1" style="">
+			<div class="fc_div">
+				<p>长按二维码联系客服<br></p>
+				<img src="picture/up_kefy.jpg"/>
+			</div>
+
+			<img src="picture/guanzhucha.png" class="fc_btn">
+
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script src="js/jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/template.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
+
+</html>

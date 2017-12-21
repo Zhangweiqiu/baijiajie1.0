@@ -1,0 +1,617 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>邀请好友赚取更多</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <script src="js/mui.min.js"></script>
+    <script src="js/jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="js/bjj_baidu.js"></script>
+    <script type="text/javascript">
+        mui.init()
+    </script>
+</head>
+<style type="text/css">
+    body {
+        font-family: "microsoft yahei";
+        background: #362c51;
+        /*height: 1500px;*/
+        /*overflow-x:hidden ;*/
+    }
+    
+    .mui-content {
+        background: #362c51;
+    }
+    
+    .piaoq-img img {
+        width: 100%;
+        display: block;
+    }
+    
+    .piao-text {
+        height: 58px;
+        background: #362c51;
+        border-bottom: 1px dashed #FFFFFF;
+        margin: 0 6px;
+    }
+    
+    .piao-text a {
+        float: left;
+        /*width: 164px;height: 36px;*/
+        text-align: center;
+        color: #333333;
+        font-size: 14px;
+        margin: 0 15%;
+        background: url(images/biaohy.png) no-repeat;
+        background-size: 100% 38px;
+        width: 30%;
+        height: 45px;
+        /*line-height: 36px;*/
+        padding-top: 7px;
+    }
+    
+    .clear:after {
+        content: "";
+        display: block;
+        clear: both;
+        visibility: hidden;
+    }
+    
+    .piao-shete {
+        padding-left: 30px;
+        padding-top: 18px;
+    }
+    
+    .piao-shete p.nthtxt {
+        color: #fbe108;
+    }
+    
+    .piao-shete p {
+        color: #FFFFFF;
+        letter-spacing: .3px;
+    }
+    
+    .piao-shete p span {
+        color: #f52b2e;
+    }
+    
+    .mui-slider1>div>a {
+        color: #FFFFFF !important;
+        float: left;
+        width: 38% !important;
+        display: inline-block;
+    }
+    
+    .mui-slider1 ul {
+        margin-top: 16px;
+    }
+    
+    #piaols {
+        border-bottom: 1px solid #ffe402;
+        overflow: auto;
+    }
+    
+    #piaols a {
+        font-size: 14px;
+    }
+    
+    .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+        border: 1px solid #ffe402;
+        background: #362c51;
+        border-bottom: 0;
+        /*position: absolute;*/
+        top: 1px;
+        left: 0;
+        z-index: 10;
+    }
+    
+    i,
+    em {
+        font-style: normal;
+    }
+    
+    .itempiao ul li {
+        font-size: 13px;
+        line-height: 38px;
+    }
+    
+    .itempiao ul li span {
+        float: left;
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        background: #FFFFFF;
+        margin-right: 10px;
+    }
+    
+    .itempiao ul li span img {
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+    }
+    
+    .itempiao ul li i.piaoname {
+        width: 15%;
+    }
+    
+    .itempiao ul li i.sjcgnm {
+        width: 18%;
+    }
+    
+    .itempiao ul li i {
+        width: 25%;
+        float: left;
+        padding-right: 10px;
+        color: #FFFFFF;
+        /*float: left;width: 20%;text-align: center;*/
+    }
+    
+    .itempiao ul li i b {
+        color: #ff3131;
+        font-size: 18px;
+        padding: 0 1px;
+    }
+    
+    .itempiao ul li {
+        /*color: #FFFFFF;*/
+    }
+    
+    .mui-table-view {
+        background: transparent;
+    }
+    
+    .mui-table-view:before {
+        height: 0;
+    }
+    
+    .mui-table-view:after {
+        height: 0;
+    }
+    
+    .mui-table-view-cell:after {
+        height: 0;
+    }
+    
+    .itempiao ul li dd {
+        padding: 0;
+        margin: 0;
+        float: right;
+        line-height: 0;
+        padding-right: 9%;
+        color: #FFFFFF;
+    }
+    
+    .itempiao ul li.mui-active {
+        background: none !important;
+    }
+    /*#item1 ul li dl i{float: left;width: 25%;}
+#item1 ul li dl{margin: 0;}*/
+    
+    #pozqgd {
+        width: 60%;
+        height: 47px;
+        display: block;
+        margin: auto;
+        background: url(images/yqzqgd.png) no-repeat;
+        background-size: 100% 47px;
+    }
+    
+    .share {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, .6);
+        z-index: 133;
+    }
+    
+    .alet {
+        position: relative;
+        margin-top: 110px;
+        margin-left: 55%;
+    }
+    
+    .alet>p {
+        color: white !important;
+        margin-bottom: 3px;
+        letter-spacing: 0.7px;
+        font-size: 17px;
+        font-family: "microsoft yahei";
+    }
+    
+    .share1 {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        /* bottom: 0;*/
+        background: rgba(0, 0, 0, .6);
+        z-index: 133;
+    }
+    /*返佣弹窗*/
+    
+    .follow_cover {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 133;
+        background-color: rgba(0, 0, 0, .3);
+        /* background: rgba(0, 0, 0, 0.2);*/
+    }
+    
+    .follow_cover .fc_div {
+        width: 80%;
+        height: auto;
+        background: #f5f5f5;
+        border-radius: 6px;
+        margin: 30% auto 0;
+    }
+    
+    .follow_cover .fc_div p {
+        padding-top: 13px;
+        font-size: 13px;
+        color: #4d4d4d;
+        text-align: left;
+        line-height: 20px;
+        font-family: "microsoft yahei";
+        padding: 0px 14px 0px 14px;
+        line-height: 17px;
+        margin-bottom: 0;
+    }
+    
+    .follow_cover .fc_div p:first-child {
+        padding-top: 10px;
+    }
+    
+    .follow_cover .fc_div p:last-child {
+        padding-bottom: 10px;
+    }
+    
+    .follow_cover .fc_div img {
+        width: 190px;
+        height: 190px;
+        margin: 15px auto;
+        display: block;
+        border: 10px solid #FFFFFF;
+    }
+    
+    .fc_div p i {
+        display: block;
+    }
+    
+    .fc_div p i span {
+        color: #ff0000;
+        ;
+    }
+    
+    @media (max-width: 320px).follow_cover1 .fc_div {
+        margin: 30% auto 0;
+    }
+    
+    .fier {
+        font-size: 85px;
+        color: white !important;
+        margin-top: 3px;
+        margin-right: 5px;
+        -webkit-animation: abc 1.5s infinite;
+        animation: abc 1.5s infinite;
+    }
+    
+    @-webkit-keyframes abc {
+        0% {
+            -webkit-transform: translate(0, 10px);
+        }
+        50% {
+            -webkit-transform: translate(0, 30px);
+        }
+        100% {
+            -webkit-transform: translate(0, 10px);
+        }
+    }
+    
+    @keyframes abc {
+        0% {
+            -webkit-transform: translate(0, 10px);
+        }
+        50% {
+            -webkit-transform: translate(0, 30px);
+        }
+        100% {
+            -webkit-transform: translate(0, 10px);
+        }
+    }
+    
+    ._WX_DUO_JI_LIE_BIAN_3 {
+        padding-bottom: 20px;
+    }
+    
+    ._WX_DUO_JI_LIE_BIAN_3 p {
+        padding-bottom: 9px !important;
+        line-height: 21px !important;
+    }
+    
+    #fir {
+        position: fixed;
+        top: 35%;
+        z-index: 132;
+        /* width: 80%; */
+        font-family: "microsoft yahei";
+        font-size: 13px;
+        max-width: 400px;
+        padding: 0 5%;
+        margin: auto;
+        display: block;
+    }
+    
+    #fir input {
+        width: 37%;
+        float: left;
+        border: none;
+    }
+    
+    #fir input#biao1 {
+        width: 60%;
+        margin-right: 2%;
+    }
+    
+    #fir input:nth-child(2) {
+        height: 40px;
+        font-family: "microsoft yahei"!important;
+    }
+    
+    .mui-toast-container {
+        bottom: 32%;
+    }
+</style>
+
+<body>
+    <div class="mui-content">
+        <div class="piaoq">
+            <div class="piaoq-img">
+                <img src="picture/piaoq.png" />
+            </div>
+            <div class="piao-text  clear">
+                <a href="javascript:void(0);" style="margin-right: 5%;">商家返佣说明</a>
+                <a href="javascript:void(0);" style="margin-left: 5%;">多级裂变说明</a>
+            </div>
+        </div>
+    </div>
+    <div style="     height: 150px;
+    padding-top: 50px;
+    background: #362c51;
+" id="">
+        <a href="javascript:void(0);" id="pozqgd"></a>
+    </div>
+
+    </div>
+
+    <div id="fir">
+        <input type="text" id="biao1" readOnly value="">
+        <input type="button" onClick="copyUrl2()" readOnly value="点击复制链接" />
+    </div>
+
+    <!--分享朋友圈-->
+    <!-- <div class="share">
+        <i class="mui-icon iconfont mui-pull-right icon-xiaofenxiangjiantou fier"></i>
+        <div class="alet">
+            <p>点击右上角</p>
+            <p>可以分享给好友</p>
+            <p>或者朋友圈</p>
+        </div>
+    </div> -->
+    <!--注释分享朋友圈 ybh 2017年5月12日 11:02:52-->
+    <div class="share1" style="background: none;">
+        <!-- <i style="color: #333333 ;" class="mui-icon iconfont mui-pull-right icon-xiaofenxiangjiantou fier"></i> -->
+    </div>
+
+
+    <!--返佣弹窗-->
+    <div class="follow_cover follow_cover1">
+        <div class="fc_div _WX_SHANG_JIA_FAN_YONG_3">
+            <i style="float: right;font-size: 28px;" class="mui-icon mui-icon-closeempty close_i"></i>
+        </div>
+    </div>
+
+    <div class="follow_cover follow_cover2">
+        <div class="fc_div _WX_DUO_JI_LIE_BIAN_3">
+            <i style="float: right;font-size: 28px;" class="mui-icon mui-icon-closeempty close_i"></i>
+        </div>
+    </div>
+
+</body>
+
+<script src="js/globle.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('body').height($(window).height());
+        var openid = getCookie('openid');
+
+        jqajax(get_invite_url(), {
+            'uniacid': get_uniacid(),
+            token: getCookie('token')
+        }, callback)
+
+        function callback(res) {
+            if (res.status == 1) {
+                $('#biao1').val(res.data.url);
+            }
+        }
+
+        // if (!openid && !isWeiXin()) {
+
+        // }
+        var datas = {
+            'uniacid': get_uniacid(),
+            openid: openid,
+            token: get_token()
+        };
+        $.ajax({
+            type: "post",
+            url: api_fans_info(),
+            dataType: 'json',
+            data: datas,
+            success: function(res) {
+                if (res.status == 1) {
+                    var data = res.data;
+                    if (res.data.verify == 0) {
+                        location_page_login();
+                        return false;
+                    }
+                }
+            }
+        });
+
+        var has_refresh = $_GET['has_refresh'];
+        if (!has_refresh || has_refresh != 1) {
+            window.location = getDir() + "piaoq.html?has_refresh=1";
+        }
+        var wx_config = getCookies('wx_config');
+        $('._WX_SHANG_JIA_FAN_YONG_3').html(wx_config._WX_SHANG_JIA_FAN_YONG_3)
+        $('._WX_DUO_JI_LIE_BIAN_3').html(wx_config._WX_DUO_JI_LIE_BIAN_3)
+        $('#pozqgd').click(function() {
+            $('.share').fadeIn(700);
+        })
+        $('.share').click(function() {
+            $(this).fadeOut();
+        })
+
+        $(".piao-text a:first-child").click(function() {
+            $(".follow_cover1").fadeIn(700);
+        });
+
+        $(".follow_cover1").click(function() {
+            $(this).fadeOut();
+        });
+        $(".close_i").click(function() {
+            $(".follow_cover1").fadeOut();
+        });
+
+        $(".piao-text a:last-child").click(function() {
+            $(".follow_cover2").fadeIn(700);
+        });
+
+        $(".follow_cover2").click(function() {
+            $(this).fadeOut();
+        });
+        $(".close_i").click(function() {
+            $(".follow_cover2").fadeOut();
+        });
+
+        var url = encodeURIComponent(location.href.split('#')[0]);
+        var appid;
+        var openid = getCookie('openid');
+        if (!openid && isWeiXin()) {
+            die('网络异常，请重新进入公众号');
+        }
+
+        if (isWeiXin()) {
+            $('.share1').show();
+            var datas = {
+                url: url,
+                uniacid: get_uniacid(),
+                'openid': openid,
+                'type': 1
+            };
+            $.ajax({
+                type: "post",
+                url: api_get_sign_package(),
+                dataType: 'json',
+                async: false, //设置为同步操作就可以给全局变量赋值成功 
+                data: datas,
+                success: function(res) {
+                    console.log(res)
+                    var wxisready = 0;
+                    appid = res.appId;
+                    console.log('appId');
+                    console.log(appid);
+                    lineLink = res.OauthRedirect;
+                    console.log('lineLink');
+                    console.log(lineLink);
+                    wxjscfg = {
+                        "debug": false,
+                        "appId": res.appId,
+                        "timestamp": res.timestamp,
+                        "nonceStr": res.nonceStr,
+                        "signature": res.signature,
+                        "jsApiList": ["checkJsApi", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareWeibo", "hideMenuItems", "showMenuItems", "hideAllNonBaseMenuItem", "showAllNonBaseMenuItem", "translateVoice", "startRecord", "stopRecord", "onRecordEnd", "playVoice", "pauseVoice", "stopVoice", "uploadVoice", "downloadVoice", "chooseImage", "previewImage", "uploadImage", "downloadImage", "getNetworkType", "openLocation", "getLocation", "hideOptionMenu", "showOptionMenu", "closeWindow", "scanQRCode", "chooseWXPay", "openProductSpecificView", "addCard", "chooseCard", "openCard"]
+                    };
+                    wx.config(wxjscfg);
+                }
+            });
+            var fans = getCookies('fans');
+            //分享code
+            imgUrl = getUrl() + '/w_bjj/images/bbjlogo.png',
+                shareTitle = '【百家借】天了撸，人人都在用的借钱神器!!【' + fans.nickname + '】邀你来关注!~';
+            descContent = '推荐好友赚千万佣金，既能借钱又能赚钱的神器,猛戳查看详情!';
+            appid = "",
+                hideAllNonBaseMenuItem = false;
+            // console.log(shareTitle);
+            // console.log(lineLink);
+            // console.log(imgUrl);
+        } else {
+            $('.share1').hide();
+            $('#pozqgd').unbind('click');
+        }
+    });
+
+    function copyToClipboard(elem) {
+        var targetId = "_hiddenCopyText_";
+        var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+        var origSelectionStart, origSelectionEnd;
+        if (isInput) {
+            target = elem;
+            origSelectionStart = elem.selectionStart;
+            origSelectionEnd = elem.selectionEnd;
+        } else {
+            target = document.getElementById(targetId);
+            if (!target) {
+                var target = document.createElement("textarea");
+                target.style.position = "absolute";
+                target.style.left = "-9999px";
+                target.style.top = "0";
+                target.id = targetId;
+                document.body.appendChild(target);
+            }
+            target.textContent = elem.textContent;
+        }
+        var currentFocus = document.activeElement;
+        target.focus();
+        target.setSelectionRange(0, target.value.length);
+
+        var succeed;
+        try {
+            succeed = document.execCommand("copy");
+        } catch (e) {
+            succeed = false;
+        }
+
+        if (currentFocus && typeof currentFocus.focus === "function") {
+            currentFocus.focus();
+        }
+        if (isInput) {
+
+            elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+        } else {
+            target.textContent = "";
+        }
+        return succeed;
+    }
+
+    function copyUrl2() {
+        copyToClipboard(document.getElementById("biao1"));
+        mui.toast("已复制好，可贴粘。");
+    }
+</script>
+
+</html>

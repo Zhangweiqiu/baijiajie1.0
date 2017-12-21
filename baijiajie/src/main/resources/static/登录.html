@@ -1,0 +1,99 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>登录</title>
+    <link href="css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <script src="js/mui.min.js"></script>
+    <script type="text/javascript" src="js/bjj_baidu.js"></script>
+</head>
+<style type="text/css">
+
+</style>
+
+<body>
+
+    <header class="mui-bar mui-bar-nav">
+        <!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+        <h1 class="mui-title">登录</h1>
+        <!--<span class="mui-pull-right loptrue" id="loreg">登录</span>-->
+    </header>
+
+
+
+    <div class="mui-content">
+        <!--登录-->
+        <div class="mui-input-group login_foot">
+            <div class="mui-input-row">
+                <i class="iconfont icon-shoujihao"></i>
+                <input type="tel" id="mobile" class="mui-input-clear phone" autocomplete="off" placeholder="请输入手机号码" data-lable="手机号" maxlength="11">
+            </div>
+            <div class="mui-input-row">
+                <i style="font-weight: bold;" class="mui-icon mui-icon-locked"></i>
+                <input type="password" id="password" class="mui-input-clear code" autocomplete="off" name="" data-lable="密码" placeholder="请输入密码">
+            </div>
+            <div class="mui-button-row">
+                <button type="button" id="land" class="mui-btn mui-btn-primary">登录</button>
+            </div>
+        </div>
+
+        <!-- 遮罩层 -->
+        <div class="link-area"><a href="login.html" id="" class="loptrue loactive">立即登录</a> <span class="spliter">|</span><a href="reg.html" id="loreg" class="loptrue">注册账号</a> <span class="spliter">|</span> <a href="modify.html" id="forgetPassword">重置密码</a>
+        </div>
+
+        <div class="tishiyu">
+            <p>老用户请通过重置密码设置密码<br>新用户请直接注册账号哦！</p>
+        </div>
+
+    </div>
+
+
+    <!--loading层-->
+    <div class="mui-backdroplo">
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/globle.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
+    <script src="js/login.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquerysession.js"></script>
+
+</body>
+
+<script>
+var user
+	$("#land").click(function(){
+		$.ajax({
+			url:'/login',
+			type:'post',
+			datatype:'json',
+			data:{"phone":$("#mobile").val(),"password":$("#password").val()},
+			success:function(data){
+				if(data.state){
+					user = JSON.stringify(data.user);//将json对象转换成json对符串
+					$.session.set('user',user);
+					window.location.href = data.url;
+				}else{
+					window.location.href = "/登录.html";
+				}
+			}
+		});
+		
+	});
+</script>
+</html>

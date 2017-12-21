@@ -1,0 +1,702 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>完善个人信息</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <!--清除微信缓存-->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link href="css/mui.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/infotion.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/iconfont1.css"/>
+	<link rel="stylesheet" href="/css/jquery.range.css">
+</head>
+
+<style type="text/css">
+	li.bj-active {
+    background: url(images/lessji.png) no-repeat center 46px;
+    background-size: 23%;
+    }
+    #wx-sfz {
+     background: url(images/shenfz.png) no-repeat center center;
+     background-size: 100%;
+     /*border: none;*/
+     border-style: none;
+     border-width: 0;
+ }
+ 
+ #wxewf {
+     background: url(images/shenfz.png) no-repeat center center;
+     background-size: 100%;
+     /*border: none;*/
+     border-style: none;
+     border-width: 0;
+ }
+ 
+ #wx-sfzmz {
+     background: url(images/shenfz.png) no-repeat center center;
+     background-size: 100%;
+     /*border: none;*/
+     border-style: none;
+     border-width: 0;
+ }
+}
+</style>
+<body>
+    <div class="mui-backdrop1">
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+    </div>
+    <div class="mui-backdrop2">
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+        <p>正在上传中</p>
+    </div>
+    <header class="mui-bar mui-bar-nav headerg ">
+        <a href="首页.html" id="clearhc" class="mui-icon mui-icon-left-nav mui-pull-left"><span style=" font-size: 15px;font-family: 'microsoft yahei';vertical-align: inherit;">返回首页</span></a>
+        <h1 class="mui-title">完善个人借款信息</h1>
+    </header>
+    <div class="mui-content mui-bjj">
+        <div class="bbj-xil">
+            <ul>
+            	<!--bj-active-->
+                <li class="bj-active1">
+                    <i>
+                    	
+                    	<!--<img src="picture/bbj-xinxi.png"/>-->
+                    <span style="font-size: 26px;margin-top: 6px;" class="iconfont icon-wanshanxinxi"></span>
+                    </i>
+                    <span>完善资料</span>
+                    <!--<img class="yui" src="picture/jiantou.png" />-->
+                </li>
+                <li>
+                    <i>
+                    	<!--<img src="picture/bbj-woyjq.png"/ style="width: 22px;">-->
+                    	<span style="font-size: 26px;margin-top: 6px;" class="iconfont icon-jiekuanjine1"></span>
+                    </i>
+                    <span>发放借款</span>
+                    <!--<img class="yui" src="picture/jiantou.png" />-->
+                </li>
+                <!--<li>
+
+                    <i><img src="picture/bbj-xiny.png" /></i>
+
+                    <span>发起借款</span>
+
+
+
+                </li>-->
+            </ul>
+
+            <dl class="bjj-info">
+                <dd>
+                    
+                    <em class="iconfont icon-xingming"></em>
+                    <input type="text" name="name" id="name" placeholder="输入您的姓名" />
+                </dd>
+                <!--<dd>
+
+                   
+
+                    <em>性别</em>
+
+                    <select name="sex" id="sex" name="sex" class="bbj-jdb">
+
+                        <option value="" selected="" disabled="" style="color: red;">请选择</option>
+
+                        <option value="1">男</option>
+
+                        <option value="0">女</option>
+
+					</select>
+
+                </dd>-->
+                <dd>
+                    
+                    <em class="iconfont icon-nianling5"></em>
+                    <input type="tel" name="age" id="age" placeholder="请输入年龄" />
+                </dd>
+                <dd>
+                    
+                    <em  class="iconfont icon-qq"></em>
+                    <input type="tel" name="qq" id="qq" placeholder="请输入QQ号码" />
+                </dd>
+                <dd>
+                    
+                    <em  class="iconfont icon-phone"></em>
+                    <input type="tel" name="phone" id="phone" readonly maxlength="11" placeholder="输入您的联系电话" />
+
+                </dd>
+                <dd>
+                   
+                    <em class="iconfont icon-zhimaxinyong"></em>
+                    <input type="tel" id="zhima" name="zhima" placeholder="请输入芝麻分" />
+                </dd>
+                 <dd>
+                    
+                    <em class="iconfont icon-shengfen"></em>
+                    <select id="address_s" name="address_s" class="bbj-jdb">
+							<option value="" selected="" disabled="">请选择</option>
+							<option value="1">北京</option>
+							<option value="-1">天津</option>
+							<option value="1">河北</option>
+							<option value="-1">山西</option>
+							<option value="1">内蒙古</option>
+							<option value="-1">辽宁</option>
+							<option value="1">吉林</option>
+							<option value="-1">黑龙江</option>
+							<option value="1">上海</option>
+							<option value="-1">江苏</option>
+                            <option value="1">浙江</option>
+							<option value="-1">安徽</option>
+							<option value="1">福建</option>
+							<option value="-1">江西</option>
+							<option value="1">山东</option>
+							<option value="-1">河南</option>
+							<option value="1">湖北</option>
+							<option value="-1">河南</option>
+							<option value="1">湖南</option>
+							<option value="-1">广东</option>
+							<option value="1">广西</option>
+							<option value="-1">海南</option>
+							<option value="1">重庆</option>
+							<option value="-1">四川</option>
+							<option value="1">贵州</option>
+							<option value="-1">云南</option>
+							<option value="-1">西藏</option>
+							<option value="1">陕西</option>
+							<option value="-1">甘肃</option>
+							<option value="1">青海</option>
+							<option value="-1">宁夏</option>
+							<option value="1">新疆</option>
+							<option value="-1">台湾</option>
+							<option value="-1">香港</option>
+							<option value="1">澳门</option>
+							<option value="-1">国外</option>
+							
+						</select>
+                </dd>
+                <!--<dd>
+
+                   
+
+                    <em class="iconfont icon-shenfenzheng"></em>
+
+                    <input type="text" name="idnumber" id="idnumber" placeholder="输入您的身份证号码" />
+
+                </dd>-->
+                <!--<dd class="yzzx">
+                    <em>服务密码</em>
+                    <input type="tel" maxlength="6" name="password" id="password" placeholder="输入您的服务密码" />
+                    <button type="button" class="yzzhenx" >获取验证码</button>
+                </dd>
+                <dd class="phyzm yzzx">
+			        <em>运营商短信验证码 </em>
+			        <input type="tel" maxlength="6" name="code" id="code" placeholder="输入您运营商短信验证码 " />
+			        <button type="button" class="yzzhenx1" >提交验证码</button>
+			    </dd>
+                <dd>
+                    <em class="bbj-liti" style="color:#D0D6D6">如何获取服务密码 ?</em>
+                    <p style="display: none;">服务密码忘记无法查询通过网上营业厅重新设置。输入的手机号码后，点击“获取随机码”（该随机码10分钟内有效），再将手机收到的随机码输入后即可，新密码会以短信方式发送至手机。打10086人工服务台，提供身份证号重新设置；持本人身份证到当地营业厅重新设置。</p>
+                </dd>-->
+                <dd>
+                   
+                    <em class="iconfont icon-yaoqing"></em>
+                    <div class="s">
+                        <img style="width: 20px; vertical-align: sub;" src="" alt="" /><strong style="    vertical-align: -5px;color: #3291ed;"></strong>
+                    </div>
+
+                    <input type="text" style="display: none;" placeholder="邀请人" disabled="disabled" />
+                </dd>
+				
+				<dd>
+            
+            <em class="iconfont icon-huabei"></em>
+          <!-- <input type="text" placeholder="有无必填" />-->
+            <select name="huabei" id="huabei" class="bbj-jdb">
+							<option value="1" selected=""  disabled="">请选择是否有花呗</option>
+							<option value="2">是</option>
+							<option value="3">否</option>
+						</select>
+        </dd>
+				
+					<dd>
+            
+            <em class="iconfont icon-jiedai"></em>
+          <!-- <input type="text" placeholder="有无必填" />-->
+            <select name="sfjdb" id="sfjdb" class="bbj-jdb">
+							<option value="" selected="" disabled="">请选择是否有借贷宝</option>
+							<option value="1">是</option>
+							<option value="0">否</option>
+						</select>
+        </dd>
+        
+        <div id="jdbfzkl">
+            <dd>
+                
+                <em>借贷宝负债额度</em>
+                <input type="tel" name="jdbfz" id="jdbfz" placeholder="输入您的借贷宝负债额度" />
+            </dd>
+            <dd>
+               
+                <em>借贷宝还款额度</em>
+                <input type="tel" name="jdbhk" id="jdbhk" placeholder="输入您借贷宝还款额度" />
+            </dd>
+
+        </div>
+    <!--<dd>
+
+        <div class="sfzcg1">
+
+            1、身份证内容清晰 <br> 2、在适当放大后仍能清晰辨识 <br>
+
+        </div>
+
+       
+
+       <em class="shenfz" style="visibility: hidden;">身份证正面照</em>
+
+        <i style="width: 31%;">
+
+            <span style="height: 21px;">身份证正面照</span>
+
+            <img class="wx-img" id="wx-sfzmz" src=""/>
+
+            
+
+            <button type="button" class="scsfz">+上传图片
+
+            <input type="file" class="file_input" less="2" id="file_input2" /></button>
+
+        </i>
+
+        <i style="width: 38%;">
+
+        <span>示例图</span>
+
+        <img class="wx-img"  style="max-width: 100px;" src="picture/weixb.png"/>
+
+        <div class="mui-backdrop">
+
+            <div class="bg-go">
+
+        <i class="mui-icon mui-icon-closeempty"></i>
+
+        <img class="cover-img1" src="picture/weixb.png">
+
+        </div>
+
+        </div>
+
+        </i>
+
+    </dd>-->
+    
+ <dd>
+
+<form id="photoform" method="POST" action="/photoupload" enctype="multipart/form-data"  >
+        <dd>
+        <i style="width: 38%; ">
+							<span>本人手持身份证</span>
+							<img class="wx-img" id="wx-sfz" src=""/>
+							<button class="scsfz" type="button" id="btnphoto">选择图片
+							<input type="file" name="file" class="file_input" less="0" id="file_input2" onchange="upload('#file_input2', '#wx-sfz');"/></button>
+						</i>
+                    <i style="width: 38%; ">
+							<span>示例图</span>
+							<img class="wx-img"  src="picture/shouchi.png"/>
+							<div class="mui-backdrop">
+			                	<div class="bg-go">
+			                	<i class="mui-icon mui-icon-closeempty"></i>
+                    <img class="cover-img1" src="picture/shouchi.png">
+        </div>
+    </div>
+    </i>
+     <div id="photoupload" style="display:none" >
+            <input   type="submit" value="+点击上传这张照片" />
+      </div>
+      </dd>
+     
+ </form>     
+ <form  id="qrcodeform" method="POST" action="/qrcodeupload" enctype="multipart/form-data"  >
+      <dd>
+            
+            <!--<em class="shenfz" style="visibility: hidden;">上传微信二维码截图</em>-->
+            <!--accept="image/*" capture="camera"-->
+            <i style="width: 38%; ">
+							<span>上传微信二维码截图</span>
+							<img class="wx-img" id="wxewf" src=""/>
+							<button class="scsfz" type="button" id="btnqrcode">选择图片
+								<input type="file" name="file" class="file_input" less="1" id="file_input1" onchange="nupload('#file_input1', '#wxewf');"/>
+							</button>
+
+							
+						</i>
+            <i style="width: 38%;">
+							<span>示例图</span>
+							<img class="wx-img" src="picture/shilieww.png"/>
+							<div class="mui-backdrop">
+			                	<div class="bg-go">
+			                	<i class="mui-icon mui-icon-closeempty"></i>
+            <img class="cover-img1" src="picture/shilieww.png">
+            </div>
+            </div>
+            </i>
+             <div id="qrcodeupload" style="display:none" >
+            <input  type="submit" value="+点击上传这张二维码" />
+        </div>
+        </dd>  
+ 
+       
+    </form>
+
+ </dd>
+    
+	 
+				
+				
+                <div class="bbj-botm">
+                   <!--  <div class="mui-input-row mui-checkbox mui-left">
+
+                        <input name="checkbox" value="" id="checkedx1" checked="" type="checkbox">
+
+                        <label>本人承诺以上信息全部属实，并为其付fakepath相应法律责任</label>
+
+                    </div>--> 
+                    <!-- <button type="button" id="bbj-one">下一步</button> -->
+                    <!--<p style="color: #3291ed;  text-decoration: underline; " id="p_link" >上传不成功？请点击跳转新页面...</p> -->
+                    <button type="button" id="reggo">确认提交</button>
+                </div>
+            </dl>
+
+
+            <dl class="bjj-info">
+
+                
+
+    <dd class="wxwechat">
+        <em>微信号</em>
+        <input type="text" name="wechat" id="wechat" placeholder="输入您的微信号 " />
+    </dd>
+
+    <div class="bbj-botm">
+      
+    </div>
+    </dl>
+
+    
+    </div>
+
+    </div>
+
+	<div class="modal fade" id="myModal">
+	      <div class="modal-dialog">
+	        <div class="modal-content">
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	          </div>
+	          <div class="modal-body">
+	            <p>个人信息修改成功! 是否前往借款?</p>
+	          </div>
+	          <div class="modal-footer">
+	          		<center><button class="btn btn-primary btn-lg" id="apply_jiedai">马上借钱</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="member.html" class=" btn btn-primary btn-lg">个人中心</a></center>
+	          </div>
+	        </div><!-- /.modal-content -->
+	      </div><!-- /.modal-dialog -->
+	    </div><!-- /.modal -->
+    
+    <div class="pop pop_alert"  >
+        <div class="d_cell">
+            <div class="pop_text">
+                <p class="pop_msg">消息提示框</p>
+                <i class="mui-icon mui-icon-closeempty close_i"></i>
+                <div class="pop_btn">
+                    <!-- <a href="javascript:;" class="btn_loan">确定</a> -->
+                    <!-- <a href="javascript:;" class="close_i">取消</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="muibjj">
+    <div class="modal-dialog" >
+    <div  class="muibjj-backdrop" id="modelback">
+    	<div class="back_img">
+    		<img src="picture/tuisongtix.png"/>
+    		<div class="back_btn">
+    			<div class="back_title">
+    				商家选择
+    			</div>
+    			
+    			<h5 style="clear: left;text-align: center;"><span id='block-range-val'>&nbsp;&nbsp;</span></h5>   
+		        <div class="mui-input-row mui-input-range">
+		        	<input type="hidden" id="age-slider" value="20" /><span id='block-range-val'>&nbsp;&nbsp;</span>
+		        </div>
+    			<div class="back_btnt clearfix">
+    				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+    				<button type="button" class="mui-btn mui-btn-primary btn-ts" id="tuiso">确认推送</button>
+    			</div>
+    	</div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+   
+    <script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
+    
+    <script src="js/mobilefix.mini.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/exif.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/lrz.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/jquerysession.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery.range.js"></script>
+    <script type="text/javascript">
+    
+    
+       // mui.init()
+
+
+	/*	$('#p_link').click(function(){
+			window.location='information3.html'
+		})
+
+       /* $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js', function(_result) {
+
+            if (remote_ip_info.ret == '1') {
+
+                //              console.log(remote_ip_info.province);
+
+                //              console.log(remote_ip_info.city);
+
+                //              console.log(remote_ip_info.district);
+
+                //              console.log(remote_ip_info.isp);
+
+                //              console.log(remote_ip_info.type);
+
+                //              console.log(remote_ip_info.desc);
+
+                $('#location').val(remote_ip_info.province + remote_ip_info.city + remote_ip_info.district + remote_ip_info.isp + remote_ip_info.type + remote_ip_info.desc)
+
+            } else {
+
+                alert('没有找到匹配的IP地址信息！');
+
+            }
+
+        });*/
+        var upload = function(c, d){
+    	    "use strict";
+    	    $("#photoupload").show();
+    	    var $c = document.querySelector(c),
+    	        $d = document.querySelector(d),
+    	        file = $c.files[0],
+    	        reader = new FileReader();
+    	    reader.readAsDataURL(file);
+    	    reader.onload = function(e){
+    	        $d.setAttribute("src", e.target.result);
+    	    };
+    	};
+
+    	var nupload = function(c, d){
+    	    "use strict";
+    	    $("#qrcodeupload").show();
+    	    var $c = document.querySelector(c),
+    	        $d = document.querySelector(d),
+    	        file = $c.files[0],
+    	        reader = new FileReader();
+    	    reader.readAsDataURL(file);
+    	    reader.onload = function(e){
+    	        $d.setAttribute("src", e.target.result);
+    	    };
+    	};
+    	
+    	
+      $(document).ready(function(){
+    	  $('#age-slider').jRange({
+              from: 0,
+              to: 100,
+              step: 1, 
+              format: '%s',
+              width: 240,
+              showLabels: true,
+              showScale: false,
+              theme: "theme-blue"
+          
+          });
+    	  
+    	  $('#photoform').submit(function (event) {
+    	        event.preventDefault();
+    	        $("#photoupload").hide();
+    	        var form = $(this);
+    	          var formData = new FormData(this);
+    	          $.ajax({
+    	            type: form.attr('method'),
+    	            url: form.attr('action'),
+    	            data: formData,
+    	            mimeType: "multipart/form-data",
+    	            contentType: false,
+    	            cache: false,
+    	            processData: false
+    	          }).success(function () {
+    	            confirm("上传成功");
+    	          }).fail(function (jqXHR, textStatus, errorThrown) {
+    	        	  confirm("上传失败，请重新上传");
+    	          });
+    	      });
+    	  
+    	  
+    	  
+    	  $('#qrcodeform').submit(function (event) {
+  	        event.preventDefault();
+  	        $("#qrcodeupload").hide();
+  	        var form = $(this);
+  	          var formData = new FormData(this);
+  	          $.ajax({
+  	            type: form.attr('method'),
+  	            url: form.attr('action'),
+  	            data: formData,
+  	            mimeType: "multipart/form-data",
+  	            contentType: false,
+  	            cache: false,
+  	            processData: false
+  	          }).success(function () {
+  	            confirm("上传成功");
+  	          }).fail(function (jqXHR, textStatus, errorThrown) {
+  	        	  confirm("上传失败，请重新上传");
+  	          });
+  	      });
+    	  
+    	  
+        var shouhuo = $("#jdbfzkl");
+		$("#sfjdb").on("change",function(){
+		   var th = $(this);
+		   var vals = th.val();
+		   if(vals==1){
+			   shouhuo.fadeIn(0);
+		   }else{
+			   shouhuo.fadeOut(0);
+		   }
+		});
+	    	
+       
+		
+        
+        var address_s;
+		var address_sindex;
+		
+        $("#address_s").on("change",function(){
+        	var opt = $(this).find("option:selected");
+        	opt.attr("selected",true);
+        	address_s=document.getElementById("address_s");
+        	address_sindex=address_s.selectedIndex;
+        	
+        	});
+        
+        var huabei;
+		var huabeiindex;
+		
+        $("#huabei").on("change",function(){
+        	var opt = $(this).find("option:selected");
+        	opt.attr("selected",true);
+        	huabei=document.getElementById("huabei");
+        	huabeiindex=huabei.selectedIndex;
+        	
+        	});
+        
+        var sfjdb;
+		var sfjdbindex;
+        $("#sfjdb").on("change",function(){
+        	var opt = $(this).find("option:selected");
+        	opt.attr("selected",true);
+        	sfjdb=document.getElementById("sfjdb");
+        	sfjdbindex=sfjdb.selectedIndex;
+        	
+        	});
+        
+
+		var userj;
+		var user;
+		userj = $.session.get('user');
+		user = $.parseJSON( userj );
+		
+	
+        var $modal = $('#myModal');
+			$("#reggo").click(function(){
+				
+				$.ajax({
+					url:'/addInfo',
+					type:'post',
+					dataType:'json',
+					data:{phone:user.phone,age:$("#age").val(),edu:$("#jdbhk").val(),fuzhai:$("#jdbfz").val(),
+						  huabei:huabei.options[huabeiindex].text,jiedaibao:sfjdb.options[sfjdbindex].text,
+						  name:$("#name").val(),password:user.password,
+						  qq:$("#qq").val(),state:1,zhima:$("#zhima").val(),
+						  address:address_s.options[address_sindex].text},
+					success:function(data){
+						if(data){
+							$modal.modal({backdrop: 'static'});
+							
+							$modal.on('show.bs.modal', function(){
+						          var $this = $(this);
+						          var $modal_dialog = $this.find('.modal-dialog');
+						          // 关键代码，如没将modal设置为 block，则$modala_dialog.height() 为零
+						          $this.css('display', 'block');
+						          $modal_dialog.css({'margin-top': Math.max(0, ($(window).height() - $modal_dialog.height()) / 2) });
+						        });
+						}
+						else
+							alert("完善失败，请检查信息");
+					},
+					error:function(){
+						alert("完善失败，请检查信息");
+					}
+				});
+			});
+			
+			var $muibjj = $('#muibjj');
+			$("#apply_jiedai").click(function(){
+				$("#myModal").modal("hide");
+				document.getElementById('modelback').style.display='block';
+				 
+				 
+				$muibjj.modal({backdrop: 'static'});
+				
+				$muibjj.on('show.bs.modal', function(){
+			          var $this = $(this);
+			          var $modal_dialog = $this.find('.modal-dialog');
+			          // 关键代码，如没将modal设置为 block，则$modala_dialog.height() 为零
+			          $this.css('display', 'block');
+			          $modal_dialog.css({'margin-top': Math.max(0, ($(window).height() - $modal_dialog.height()) / 2) });
+			        });
+			});
+			
+			$("#tuiso").click(function(){
+			
+			alert($("#age-slider").val());
+			});
+
+        });		
+    </script>
+</body>
+
+</html>
