@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.weixinmodel.message.TextMessage;
 import com.example.demo.others.CheckUtil;
 import com.example.demo.others.CreateMenu;
+import com.example.demo.others.Download;
 import com.example.demo.others.GetToken;
 import com.example.demo.others.UserInfo;
 import com.example.demo.service.weixin.MenuService;
@@ -81,7 +82,7 @@ public class WeixinController {
 	}
 	
 	@PostMapping(value="")
-	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, DocumentException {
+	public void doPost(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
 		Map<String,String>  map = MessageUtil.parseXml(request);
@@ -164,6 +165,7 @@ public class WeixinController {
 			if(json != null) {
 				String url3 = qrcodeService.qrcode_get_url.replace("TICKET", json.getString("ticket"));
 				System.out.println(url3);
+				Download.download(url3, "qrcode.jpg", "E:\\baijiajie1.0\\baijiajie\\src\\main\\resources\\pics");
 				respContent += url3 +" \">【 查看我的推广海报】</a>\n" + 
 	        			"\n"+
 	        			" <a href=\"\">【 查看我的分享链接】</a>\n";
