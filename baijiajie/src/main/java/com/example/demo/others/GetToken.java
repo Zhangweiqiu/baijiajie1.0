@@ -18,9 +18,9 @@ import com.example.demo.util.WeixinUtil;
 public class GetToken {
 	private static Logger log = LoggerFactory.getLogger(GetToken.class);
 	//第三方用户唯一凭证
-	public static String appid = "wx04a54d6d3c808fbf";
+	public static String appid = "wx35589b0ee9272c4b";
 	//第三方用户唯一凭证密钥
-	public static String appsecret = "110c6e6924b772ddacec1cb64cf74315";
+	public static String appsecret = "436a53ca7750e945faaf12f098f7894d";
 	public static AccessToken accessToken = null;
 	
 	@Scheduled(fixedDelay = 7200000)

@@ -21,6 +21,7 @@ import com.example.demo.others.CreateMenu;
 import com.example.demo.others.GetToken;
 import com.example.demo.others.UserInfo;
 import com.example.demo.service.MenuService;
+import com.example.demo.service.weixin.UserInfoService;
 import com.example.demo.util.MessageUtil;
 import com.example.demo.util.WeixinUtil;
 
@@ -33,6 +34,8 @@ public class WeixinController {
 	
 	@Autowired
 	MenuService menuService;
+	@Autowired
+	UserInfoService userinfoService;
 
 	private String TOKEN = "baijiajie";
 	
@@ -97,6 +100,7 @@ public class WeixinController {
 			String eventType = map.get("Event");
 			if(eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
 				respContent = "欢迎您加入百家借大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]";
+				
 			}
 			else if(eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {
 				String eventKey = map.get("EventKey");
@@ -140,11 +144,14 @@ public class WeixinController {
 		tm.setCreateTime(new Date(0).getTime());
 		tm.setContent(respContent);
 		message = MessageUtil.textMessageToXml(tm);
-		//显示个人信息
+		
 		String at = GetToken.accessToken.getToken();
-		String url = UserInfo.getUserMessage(at, fromUserName);
-		JSONObject object = WeixinUtil.httpRequest(url, "GET", null);
-		System.out.println(object);
+		String url2 = UserInfo.getUserMessage(at, fromUserName);
+		JSONObject jsonObject = WeixinUtil.httpRequest(url2, "GET", null);
+		System.out.println(jsonObject);
+		if(jsonObject != null) {
+			userinfoService.addUser(jsonObject.getString("openid"), jsonObject.getString("nickname"), jsonObject.getString("headimgurl"));
+		}
 		out.write(message);
 		out.close();
 	}
