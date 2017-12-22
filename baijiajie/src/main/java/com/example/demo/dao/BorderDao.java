@@ -1,6 +1,5 @@
 package com.example.demo.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
