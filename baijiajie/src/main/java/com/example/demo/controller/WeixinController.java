@@ -20,7 +20,8 @@ import com.example.demo.others.CheckUtil;
 import com.example.demo.others.CreateMenu;
 import com.example.demo.others.GetToken;
 import com.example.demo.others.UserInfo;
-import com.example.demo.service.MenuService;
+import com.example.demo.service.weixin.MenuService;
+import com.example.demo.service.weixin.QrcodeService;
 import com.example.demo.service.weixin.UserInfoService;
 import com.example.demo.util.MessageUtil;
 import com.example.demo.util.WeixinUtil;
@@ -36,6 +37,8 @@ public class WeixinController {
 	MenuService menuService;
 	@Autowired
 	UserInfoService userinfoService;
+	@Autowired
+	QrcodeService qrcodeService;
 
 	private String TOKEN = "baijiajie";
 	
@@ -96,8 +99,9 @@ public class WeixinController {
 		
 		String message = null;
 		
+		String eventType = map.get("Event");
 		if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_EVENT)) {
-			String eventType = map.get("Event");
+			
 			if(eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
 				respContent = "欢迎您加入百家借大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]";
 				
@@ -120,9 +124,7 @@ public class WeixinController {
                 			"提现提到手软！\n" + 
                 			"\n" + 
                 			"猛戳下方，开始赚钱↓↓↓↓\n" + 
-                			" <a href=\"\">【 查看我的推广海报】</a>\n" + 
-                			"\n"+
-                			" <a href=\"\">【 查看我的分享链接】</a>\n";
+                			" <a href=\"";
 				}else {
 					respContent = "欢迎您加入百家借大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]\r\n";
 				}
@@ -142,9 +144,9 @@ public class WeixinController {
 		tm.setFromUserName(toUserName);
 		tm.setMsgType("text");
 		tm.setCreateTime(new Date(0).getTime());
-		tm.setContent(respContent);
-		message = MessageUtil.textMessageToXml(tm);
+
 		
+		//获取个人信息并进行储存
 		String at = GetToken.accessToken.getToken();
 		String url2 = UserInfo.getUserMessage(at, fromUserName);
 		JSONObject jsonObject = WeixinUtil.httpRequest(url2, "GET", null);
@@ -152,6 +154,28 @@ public class WeixinController {
 		if(jsonObject != null) {
 			userinfoService.addUser(jsonObject.getString("openid"), jsonObject.getString("nickname"), jsonObject.getString("headimgurl"));
 		}
+		
+		//生成二维码
+		String expireSeconds = "604800";
+		String sceneId = "test";
+		JSONObject json = qrcodeService.createTicket(expireSeconds, at, sceneId);
+		System.out.println(json);
+		if(!eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
+			if(json != null) {
+				String url3 = qrcodeService.qrcode_get_url.replace("TICKET", json.getString("ticket"));
+				System.out.println(url3);
+				respContent += url3 +" \">【 查看我的推广海报】</a>\n" + 
+	        			"\n"+
+	        			" <a href=\"\">【 查看我的分享链接】</a>\n";
+			}else {
+				respContent +=" \">【 查看我的推广海报】</a>\n" + 
+	        			"\n"+
+	        			" <a href=\"\">【 查看我的分享链接】</a>\n";
+			}
+		}
+		tm.setContent(respContent);
+		message = MessageUtil.textMessageToXml(tm);
+		
 		out.write(message);
 		out.close();
 	}
