@@ -96,18 +96,43 @@ public class WeixinController {
         String content = map.get("Content");
 		
 		// 默认返回的文本消息内容
-        String respContent = "请求处理异常，请稍候尝试！";
+        String respContent = "";
 		
-		String message = null;
+        //昵称
+		String nickname = null;
+		//头像
+		String headimgurl = null;
+		//上一级openid
+		String father = null;
+		//推送事件类型
+		String eventType = null;
 		
-		String eventType = map.get("Event");
+		
+		//获取个人信息并进行储存
+		String at = GetToken.accessToken.getToken();
+		String url2 = UserInfo.getUserMessage(at, fromUserName);
+		JSONObject jsonObject = WeixinUtil.httpRequest(url2, "GET", null);
+		System.out.println(jsonObject);
+		if(jsonObject != null) {
+			nickname = jsonObject.getString("nickname");
+			headimgurl = jsonObject.getString("headimgurl");
+			
+		}
+		Download.download(headimgurl, fromUserName+".jpg", "E:\\baijiajie1.0\\baijiajie\\src\\main\\resources\\static\\headimg");
+		
+		eventType = map.get("Event");
 		if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_EVENT)) {
 			
-			if(eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
+			if(eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) { //关注公众号时推送，或未关注
 				respContent = "欢迎您加入百家借大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]";
-				
+				father = map.get("EventKey");
+				father = father.replace("qrscene_", "");
+				userinfoService.addUser(fromUserName, nickname, fromUserName+".jpg", father);
 			}
-			else if(eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {
+			else if(eventType.equals(MessageUtil.EVENT_TYPE_SCAN)) {//已关注群体，刷二维码
+				respContent = "欢迎您加入百家借大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]";
+			}
+			else if(eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {//自定义菜单点击事件
 				String eventKey = map.get("EventKey");
 				if(eventKey.equals("11")) {
 					respContent = "【百家借】\n" + 
@@ -126,7 +151,7 @@ public class WeixinController {
                 			"\n" + 
                 			"猛戳下方，开始赚钱↓↓↓↓\n" + 
                 			" <a href=\"";
-				}else {
+				}else { //
 					respContent = "欢迎您加入百家借大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]\r\n";
 				}
 			}
@@ -147,35 +172,37 @@ public class WeixinController {
 		tm.setCreateTime(new Date(0).getTime());
 
 		
-		//获取个人信息并进行储存
-		String at = GetToken.accessToken.getToken();
-		String url2 = UserInfo.getUserMessage(at, fromUserName);
-		JSONObject jsonObject = WeixinUtil.httpRequest(url2, "GET", null);
-		System.out.println(jsonObject);
-		if(jsonObject != null) {
-			userinfoService.addUser(jsonObject.getString("openid"), jsonObject.getString("nickname"), jsonObject.getString("headimgurl"));
-		}
+
+		
+
 		
 		//生成二维码
-		String expireSeconds = "604800";
-		String sceneId = "test";
-		JSONObject json = qrcodeService.createTicket(expireSeconds, at, sceneId);
+		String expireSeconds = "2592000";
+		JSONObject json = qrcodeService.createTicket(expireSeconds, at, fromUserName);
 		System.out.println(json);
-		if(!eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
-			if(json != null) {
-				String url3 = qrcodeService.qrcode_get_url.replace("TICKET", json.getString("ticket"));
-				System.out.println(url3);
-				Download.download(url3, "qrcode.jpg", "E:\\baijiajie1.0\\baijiajie\\src\\main\\resources\\pics");
-				respContent += url3 +" \">【 查看我的推广海报】</a>\n" + 
-	        			"\n"+
-	        			" <a href=\"\">【 查看我的分享链接】</a>\n";
-			}else {
-				respContent +=" \">【 查看我的推广海报】</a>\n" + 
-	        			"\n"+
-	        			" <a href=\"\">【 查看我的分享链接】</a>\n";
+		if(eventType != null) {
+			if(eventType.equals(MessageUtil.EVENT_TYPE_CLICK) ) {
+				if(json != null) {
+					String url3 = qrcodeService.qrcode_get_url.replace("TICKET", json.getString("ticket"));
+					System.out.println(url3);
+					Download.download(url3, fromUserName+".jpg", "E:\\baijiajie1.0\\baijiajie\\src\\main\\resources\\static\\qrcode");
+					respContent += url3 +" \">【 查看我的推广海报】</a>\n" + 
+		        			"\n"+
+		        			" <a href=\"www.baidu.com?openid=123\">【 查看我的分享链接】</a>\n";
+				}else {
+					respContent +=" \">【 查看我的推广海报】</a>\n" + 
+		        			"\n"+
+		        			" <a href=\"\">【 查看我的分享链接】</a>\n";
+				}
 			}
 		}
 		tm.setContent(respContent);
+	
+		
+		
+		
+		//回复信息
+		String message = null;
 		message = MessageUtil.textMessageToXml(tm);
 		
 		out.write(message);
