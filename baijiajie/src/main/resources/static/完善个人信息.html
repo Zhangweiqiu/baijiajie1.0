@@ -309,7 +309,7 @@
     
  <dd>
 
-<form id="photoform" method="POST" action="/photoupload" enctype="multipart/form-data"  >
+<form id="photoform" method="POST" action="/photoupload/" enctype="multipart/form-data"  >
         <dd>
         <i style="width: 38%; ">
 							<span>本人手持身份证</span>
@@ -333,7 +333,7 @@
       </dd>
      
  </form>     
- <form  id="qrcodeform" method="POST" action="/qrcodeupload" enctype="multipart/form-data"  >
+ <form  id="qrcodeform" method="POST" action="/qrcodeupload/" enctype="multipart/form-data"  >
       <dd>
             
             <!--<em class="shenfz" style="visibility: hidden;">上传微信二维码截图</em>-->
@@ -470,8 +470,6 @@
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<script src="/js/jquery.range.js"></script>
     <script type="text/javascript">
-    
-    
        // mui.init()
 
 
@@ -530,7 +528,7 @@
     	    };
     	};
     	
-    	
+    	var user =JSON.parse($.session.get('user'));
       $(document).ready(function(){
     	  $('#age-slider').jRange({
               from: 0,
@@ -551,7 +549,7 @@
     	          var formData = new FormData(this);
     	          $.ajax({
     	            type: form.attr('method'),
-    	            url: form.attr('action'),
+    	            url: form.attr('action')+user.phone,
     	            data: formData,
     	            mimeType: "multipart/form-data",
     	            contentType: false,
@@ -573,7 +571,7 @@
   	          var formData = new FormData(this);
   	          $.ajax({
   	            type: form.attr('method'),
-  	            url: form.attr('action'),
+  	            url: form.attr('action')+user.phone,
   	            data: formData,
   	            mimeType: "multipart/form-data",
   	            contentType: false,

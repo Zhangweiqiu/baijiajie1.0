@@ -10,8 +10,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +24,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
+
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
 
 @RestController
 public class UserController {
@@ -53,13 +58,14 @@ public class UserController {
 		return userService.modifyPsw(phone, password);
 	}
 	
-	@RequestMapping(value = "/photoupload", method = RequestMethod.POST)
-    public void upload(@RequestParam("file") MultipartFile file) {
+	@RequestMapping(value = "/photoupload/{phone}")
+    public void upload(@RequestParam("file") MultipartFile file,@PathVariable String phone) {
         if (!file.isEmpty()) {
         	str[0] = file.getOriginalFilename();
             System.out.println(str[0]);
+        	System.out.println(phone+"-------------------------------");
             try {
-            	File nfile = new File("src/main/resources/pics/"+file.getOriginalFilename());
+            	File nfile = new File("src/main/resources/pics/"+phone+file.getOriginalFilename());
                 BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(nfile));
                 out.write(file.getBytes());
                 out.flush();
@@ -73,13 +79,13 @@ public class UserController {
     }
 	
 	
-	@RequestMapping(value = "/qrcodeupload", method = RequestMethod.POST)
-    public void qrcodeupload(@RequestParam("file") MultipartFile file) {
+	@RequestMapping(value = "/qrcodeupload/{phone}", method = RequestMethod.POST)
+    public void qrcodeupload(@RequestParam("file") MultipartFile file,@PathVariable String phone) {
         if (!file.isEmpty()) {
         	str[1] = file.getOriginalFilename();
             System.out.println(str[1]);
             try {
-            	File nfile = new File("src/main/resources/pics/"+file.getOriginalFilename());
+            	File nfile = new File("src/main/resources/pics/"+phone+file.getOriginalFilename());
                 BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(nfile));
                 out.write(file.getBytes());
                 out.flush();
