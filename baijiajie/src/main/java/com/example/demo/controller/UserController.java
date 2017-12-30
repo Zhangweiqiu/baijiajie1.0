@@ -105,12 +105,7 @@ public class UserController {
 			  String name,String password,
 			  String qq,Integer state,Float zhima,
 			  String address) {
-		System.out.println("111111");
-		System.out.println(age);
-		System.out.println(phone);
-		System.out.println(str[0]);
-		System.out.println(address);
-		System.out.println(huabei);
+
 		User nuser = new User();
 		nuser.setPhone(phone);
 		nuser.setAge(age);
