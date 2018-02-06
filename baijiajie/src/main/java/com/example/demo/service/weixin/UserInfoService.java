@@ -56,4 +56,8 @@ public class UserInfoService {
 			userinfoDao.save(u);
 		}
 	}
+	
+	public UserInfo findUser(String openId) {
+		return userinfoDao.findOne(openId);
+	}
 }

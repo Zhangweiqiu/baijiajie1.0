@@ -689,8 +689,8 @@
 			});
 			
 			$("#tuiso").click(function(){
-			
-			alert($("#age-slider").val());
+				$.session.set('tuiso',$("#age-slider").val());
+				window.location.href = "/百家放款.html";
 			});
 
         });		

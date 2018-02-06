@@ -63,12 +63,15 @@ public class UserService {
 		user.setPhone(phone);
 		user.setPassword(password);
 		user.setState(0);
-		if(userDao.save(user) != null) {
-			map.put("state", true);
-			map.put("url", "/登录.html");
-		}else
+		if(userDao.findOne(phone)==null) {
+			if(userDao.save(user) != null) {
+				map.put("state", true);
+				map.put("url", "/登录.html");
+			}else
+				map.put("state", false);
+		}else {
 			map.put("state", false);
-		
+		}
 		return map;
 	}
 	

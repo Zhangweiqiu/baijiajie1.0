@@ -1,0 +1,373 @@
+﻿<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>借款机构</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!-- 添加到主屏后的标题（iOS 6 新增） -->
+		<meta name="apple-mobile-web-app-title" content="百家借">
+		<!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<!-- 设置苹果工具栏颜色 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="blue" />
+		<!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+		<meta name="format-detection" content="telephone=no, email=no" />
+		<!--清除微信缓存-->
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/saixuan.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<script src="js/mui.min.js"></script>
+		<script src="js/jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/bjj_baidu.js"></script>
+
+	</head>
+	<style type="text/css">
+		.tab-Four li {
+			width: 25%;
+			float: left;
+			font-size: 14px;
+			text-align: center;
+		}
+		
+		.tab-Four:after {
+			content: "";
+			display: block;
+			clear: both;
+			visibility: hidden;
+		}
+		
+		.tab-Four li a {
+			color: #333333;
+			padding-bottom: 4px;
+		}
+		
+		.tab-Four li.active a {
+			border-bottom: 2px solid #4b97ea;
+		}
+		
+		.tab-Four li.active a span {
+			color: #4b97ea;
+		}
+		
+		.tab-Four li a span {
+			color: red;
+		}
+		
+		.tab-Four {
+			padding: 10px 0;
+		}
+		
+		.sx-content {
+			display: none;
+		}
+		.tab-xin a i{
+			float: left;
+		}
+		.tab-xin a:after{
+			content: "";
+			display: block;
+			clear: both;
+			visibility: hidden;
+		}
+		.tab-xin a i em{
+			display: block;
+			    padding-bottom: 5px;
+			    color: #c7c4c4;
+		}
+		.tab-xin a{
+			display: block;
+			    padding: 10px 0;
+			    font-size: 14px;
+			    border-bottom: 1px solid #f0f0f0;
+			    margin-left: 14px;
+    margin-right: 2px;
+		}
+		.tab-xin a i img{
+			line-height: 4.2rem !important;
+		    max-width: 4.2rem !important;
+		    height: 4.2rem !important;
+		    border-radius: 100%;
+		       display: block;
+			  
+			    margin-top: 7px;
+		}
+		.tab-xin a i.tab-io {
+			padding-left: 1rem;
+			border-right: 1px solid #e5e2e2;
+			padding-right: .6rem;
+		} 
+		 .tab-xin a i.tab-iw {
+			padding-left: 1rem;
+			    width: 40%;
+		}    
+		.tab-xin a i.tab-io em.tab-io-emw{
+			color: #3189eb;
+			font-size: 18px;
+		}
+		.tab-xin a i.tab-io em:last-child{
+			color: #c7c4c4;
+			
+			/*font-size: 16px;*/
+		}
+		.tab-xin a i.tab-iw em span{
+			float: right;
+		}
+		.tab-xin a i.tab-iw em:first-child span{
+			color:#3189eb ;
+		}
+		.tab-xin a i.tab-iw em:nth-child(2) span{
+			    color: red;
+		}
+		.tab-xin a i.tab-iw em:last-child span{
+			color:red;
+		}
+		.tab-title-wangdai{
+			font-size: 14px;
+			text-align: center;
+			color: #c7c4c4;
+		}
+		.tab-title-wangdai span{
+			color: red;
+		}
+		.tab-xin a i.tab-io em.tab-io-emo{
+			       width: 100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+		}
+		.tab-xin{
+			margin-bottom: 50px;
+		}
+		
+	</style>
+
+	<body>
+		<div class="mui-content mui-matchingbj">
+
+			<!--轮播开始-->
+			<div id="slider" style="height: 176px;" class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop mui-lunbo">
+				</div>
+			</div>
+
+			<h5>
+            <em class="mui-icon iconfont icon-gonggao"></em>
+            <span id="xiug">温馨提示:借条商家普遍门槛较低，但利息偏高</span>
+        </h5>
+
+
+			<div class="tab-Four" >
+				
+				<li class="active" data-sx="hot">
+					<a class="" href="javascript:;">热门</a>
+				</li>
+				<li data-sx="">
+					<a href="javascript:;">筛选</a>
+				</li>
+				<li data-sx="no_borrow">
+					<a href="javascript:;">未申请<span id="no_borrow">(0)</span></a>
+				</li>
+				<li data-sx="is_borrow">
+					<a href="javascript:;">浏览<span id="is_borrow">(0)</span></a>
+				</li>
+				
+			</div>
+			<div class="tab-title-wangdai">
+				共有59个口子,预计可借<span>88500</span>元
+			</div>
+			<ul class="list_k list_k2" style="display: block;" id = "amount">
+		   			
+		   	</ul>
+		</div>
+		
+		 <nav class="mui-bar mui-bar-tab">
+        <a href = "/首页.html" class="mui-tab-item">
+            <span class="mui-icon iconfont icon-shouyeshouye1" style="font-size: 23px; top: 3px;"></span>
+            <span class="mui-tab-label">首页</span>
+        </a>
+        <!--<a class="mui-tab-item">
+            <span class="mui-icon iconfont icon-jiekuan"></span>
+            <span class="mui-tab-label">借款机构</span>
+        </a>-->
+        <a class="mui-tab-item mui-active">
+            <span style="font-size: 23px;" class="mui-icon iconfont icon-guanwang"></span>
+            <span class="mui-tab-label">网贷</span>
+        </a>
+       	<a href = "/借条.html" class="mui-tab-item">
+            <span class="mui-icon iconfont icon-jiekuan-xuanzhong"></span>
+            <span class="mui-tab-label">借条</span>
+        </a>
+        <a class="mui-tab-item" href="/news-main.html">
+            <span style="font-size: 23px;" class="mui-icon iconfont icon-3zuixinkouzid45616"></span>
+            <span class="mui-tab-label">新口子</span>
+        </a>
+        <!--<a class="mui-tab-item">
+            <span class="mui-icon iconfont icon-yaoqing1"></span>
+            <span class="mui-tab-label">邀请</span>
+        </a>-->
+        <a href="/member.html" class="mui-tab-item">
+            <span class="mui-icon iconfont icon-mg-user"></span>
+            <span class="mui-tab-label">会员中心</span>
+        </a>
+    </nav>
+		<!--<span id="returnTop">回到顶部</span>-->
+	</body>
+	<script src="js/navtab.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/template.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.lazyload.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/globle.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
+ 	<script src="js/saixuan.js" type="text/javascript" charset="utf-8"></script> 
+
+	<script type="text/javascript">
+		
+		$('.tab-Four li').click(function() {
+			var idx = $(this).index();
+
+			var tab_url1 = api_business_list();//ybh 2017年5月2日 18:30:42
+
+			function callback(res) {
+				data = res;
+				console.log(res)
+				Template_ini('centent', '#matchingbj', data);
+				smallXing();
+				$(".newtogg dd:first-child").click(function() {
+					$(this).nextAll().find('i').remove();
+					$(this).nextAll().slideToggle();
+				});
+			}
+
+			if(idx == 0) {
+				var data = {
+					'uniacid': get_uniacid(),
+					'openid': getCookie('openid'),
+					'type_two': 0,
+					'token': get_token(),
+					'px2': $(this).attr('data-sx')
+				}
+				jqajax(tab_url1, data, callback)
+
+			} else if(idx == 1) {
+				$('.dddpp').show()
+				$("#hide-content>div").eq(1).show()
+				$('.search-handle').show();
+				$('.sx-content').show().addClass("Top_fixed")
+
+			} else if(idx == 2) {
+				var data = {
+					'uniacid': get_uniacid(),
+					'openid': getCookie('openid'),
+					'type_two': 0,
+					'token': get_token(),
+					'px2': $(this).attr('data-sx')
+				}
+				jqajax(tab_url1, data, callback)
+			} else if(idx == 3) {
+				var data = {
+					'uniacid': get_uniacid(),
+					'openid': getCookie('openid'),
+					'type_two': 0,
+					'token': get_token(),
+					'px2': $(this).attr('data-sx')
+				}
+				jqajax(tab_url1, data, callback)
+			}
+			$(this).addClass("active").siblings().removeClass("active");
+			//		$(".tab-Four li").eq(idx).fadeIn().siblings(".tab-Four li").hide();
+		})
+		
+		
+		
+		
+		
+		$.ajax({
+			url:'/addBInfoByAmount',
+			type:'post',
+			dataType:'json',
+			data:{},
+			success:function(data){
+				if(data.state){
+					var da = data.amount;
+					$("#total").text(da.length);
+					loding(da);
+				}else
+					alert("数据加载错误");
+			}
+		});
+		
+		$.ajax({
+			url:'/countbusiness',
+			type:'post',
+			dataType:'json',
+			data:{},
+			success:function(data){
+				if(data.state){
+					var da = data.bnum;
+					$("#bnum").text(da.length);
+				}else
+					alert("数据加载错误");
+			}
+		});
+		
+		$.ajax({
+			url:'/selectlowByAmountg',
+			type:'post',
+			dataType:'json',
+			data:{},
+			success:function(data){
+				if(data.state){
+					var da = data.lowAmount;
+					$("#lowAmount").text(da);
+				}else
+					alert("数据加载错误");
+			}
+		});
+	
+	function loding(data){
+		var inner;
+		var n = $.session.get('tuiso');
+		if(n == undefined || n > data.length){
+			for(var i = 0 ; i < data.length; i++){
+				inner = "<li><i><img src=\"./百家放款_files/bbjlogo.png\"></i><dl><em>" + data[i].name + "</em>";
+				inner += "<em>最高额度：" + data[i].amount + "</em>";
+				inner +="<em>" + data[i].period +"&nbsp&nbsp&nbsp"+ data[i].materials + "</em>";
+				inner +="</dl><button type=\"button\" id=\"button1\" class=\"button button2\"  value=\""+ data[i].qq+"\" img=\"http://upload.rrjiekuan.com/Uploads_Picture_2017-07-26_5978406270761.jpg@baijiajie.nostyle\" onclick=\"showQQ(this)\" class=\"show\">申请</button></li>";
+	//			inner += "<img src='picture/weixb.png' id=\""+data[i].qq+"\" style='display:none' width=\"160px\" hight=\"200px\">";onclick = 'showQQ(this)'
+				$("#amount").append(inner);
+			}
+		}else{
+			for(var i = 0 ; i < n; i++){
+				inner = "<li><i><img src=\"./百家放款_files/bbjlogo.png\"></i><dl><em>" + data[i].name + "</em>";
+				inner += "<em>最高额度：" + data[i].amount + "</em>";
+				inner +="<em>" + data[i].period +"&nbsp&nbsp&nbsp"+ data[i].materials + "</em>";
+				inner +="</dl><button type=\"button\" id=\"button1\" class=\"button button2\"  value=\""+ data[i].qq+"\" img=\"http://upload.rrjiekuan.com/Uploads_Picture_2017-07-26_5978406270761.jpg@baijiajie.nostyle\" onclick=\"showQQ(this)\" class=\"show\">申请</button></li>";
+	//			inner += "<img src='picture/weixb.png' id=\""+data[i].qq+"\" style='display:none' width=\"160px\" hight=\"200px\">";onclick = 'showQQ(this)'
+				$("#amount").append(inner);
+			}
+		}
+	}
+	
+	var $modal = $('#myModal');
+	function showQQ(e){
+		var qq = $(e).val();
+		$("#showQQ").text(qq);
+
+		$modal.modal({backdrop: 'static'});
+		
+		$modal.on('show.bs.modal', function(){
+	          var $this = $(this);
+	          var $modal_dialog = $this.find('.modal-dialog');
+	          // 关键代码，如没将modal设置为 block，则$modala_dialog.height() 为零
+	          $this.css('display', 'block');
+	          $modal_dialog.css({'margin-top': Math.max(0, ($(window).height() - $modal_dialog.height()) / 2) });
+	        });
+	}  
+	</script>
+
+</html>

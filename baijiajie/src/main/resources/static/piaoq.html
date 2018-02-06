@@ -393,7 +393,6 @@
         <a href="javascript:void(0);" id="pozqgd"></a>
     </div>
 
-    </div>
 
     <div id="fir">
         <input type="text" id="biao1" readOnly value="">
@@ -447,7 +446,7 @@
                 $('#biao1').val(res.data.url);
             }
         }
-
+		
         // if (!openid && !isWeiXin()) {
 
         // }
@@ -552,7 +551,7 @@
             var fans = getCookies('fans');
             //分享code
             imgUrl = getUrl() + '/w_bjj/images/bbjlogo.png',
-                shareTitle = '【百家借】天了撸，人人都在用的借钱神器!!【' + fans.nickname + '】邀你来关注!~';
+                shareTitle = '【享来介】天了撸，人人都在用的借钱神器!!【' + fans.nickname + '】邀你来关注!~';
             descContent = '推荐好友赚千万佣金，既能借钱又能赚钱的神器,猛戳查看详情!';
             appid = "",
                 hideAllNonBaseMenuItem = false;
@@ -607,6 +606,13 @@
         }
         return succeed;
     }
+    $(document).ready(function(){
+    	
+          $('#biao1').val("http://123.207.111.95/登录.html?openid="+user.openid);	
+      
+    }  
+    	
+    });
 
     function copyUrl2() {
         copyToClipboard(document.getElementById("biao1"));

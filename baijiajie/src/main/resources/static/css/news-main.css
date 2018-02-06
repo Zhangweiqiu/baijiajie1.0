@@ -1,0 +1,406 @@
+﻿body {
+	max-width: 420px;
+	margin: auto;
+	position: relative;
+	-webkit-box-shadow: 0 1px 6px #ccc;
+	box-shadow: 0 1px 6px #ccc;
+	width: 100%;
+	height: 100%;
+	background-color: #efeff4;
+}
+
+html {
+	background: #DDDDDD;
+	width: 100%;
+	height: 100%;
+}
+
+img {
+	width: 100%;
+}
+
+ul,
+li {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+dl {
+	margin: 0;
+	padding: 0;
+}
+
+em,
+i {
+	font-style: normal;
+}
+
+.clear {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", STHeiti, "Microsoft Yahei", Tahoma, Simsun, sans-serif;
+}
+input{
+	font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", STHeiti, "Microsoft Yahei", Tahoma, Simsun, sans-serif;
+}
+.news-title {
+	background: #FFFFFF;
+}
+
+.news-title:after {
+	content: "";
+	display: block;
+	clear: both;
+	visibility: hidden;
+}
+
+.news-title li {
+	color: #a1a1a1;
+	font-size: 14px;
+	float: left;
+	width: 50%;
+	text-align: center;
+	line-height: 44px;
+}
+
+.news-h5 {
+	color: #737373;
+	text-align: center;
+	font-size: 15px;
+	margin: 10px 0;
+	    margin-top: 10px;
+}
+
+.news-box {
+	padding: 0 13px !important;
+	background-color: #efeff4;
+	    margin-top: 20px;
+}
+
+.news-box li {
+	margin-bottom: 15px;
+	background-color: #FFFFFF;
+	position: relative;
+	border-radius: 4px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.news-box a {
+	display: block;
+}
+
+.loading-text {
+	text-align: center;
+	font-size: 14px;
+	display: block;
+	line-height: 160px;
+	    margin: auto;
+}
+
+.mui-content {
+	width: 100%;
+	height: 100%;
+	/*background: #FFFFFF;*/
+	position: relative;
+}
+
+.news-text {
+	padding: 10px;
+	height: 100%;
+	display: block;
+}
+
+.news-text:after {
+	content: "";
+	display: block;
+	clear: both;
+	visibility: hidden;
+}
+
+.news-box li .news-text img {
+	max-width: 108px;
+	height: 80px;
+	border-radius: 4px;
+	float: left;
+}
+
+.news-right {
+	font-size: 14px;
+	float: right;
+	width: 64%;
+}
+
+.news-right .dl-one {
+	width: 100%;
+	word-wrap: normal;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	color: #333;
+	font-weight: 400;
+	margin-bottom: 8px;
+}
+
+.news-right .dl-two {
+	width: 100%;
+	word-wrap: normal;
+	white-space: nowrap;
+	overflow: hidden;
+	font-weight: 400;
+	text-overflow: ellipsis;
+	margin-bottom: 8px;
+	color: #737373;
+	margin-bottom: 8px;
+}
+
+.news-right .dl-tht {
+	color: #ccc!important;
+	margin-bottom: 8px;
+}
+
+.news-right .dl-tht span {
+	color: #00a0e9;
+	margin-right: 10px;
+}
+
+
+/*pic轮播*/
+
+.pic {
+	width: 100%;
+	position: relative;
+	    height: 106px;
+}
+
+.pic img {
+	width: 100%;
+}
+
+.swiper-container {
+	width: 100%;
+	height: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.swiper-container-horizontal>.swiper-pagination-bullets {
+	bottom: 3% !important;
+}
+
+.swiper-pagination-bullet-active {
+	background: #FFFFFF !important;
+}
+
+
+/*滑动*/
+
+.module01 {
+	width: 100%;
+}
+
+
+/*咨询详情*/
+
+.mui-detail {
+	background: #FFFFFF;
+}
+
+.detail {
+	padding: 0 10px;
+	background: #FFFFFF;
+}
+
+.detail-content {
+	width: 100%;
+	height: 100%;
+}
+
+.detail h5 {
+	    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 16px;
+    color: #333333;
+    line-height: 28px;
+}
+
+.detail-describe img {
+	width: 24px;
+	height: 24px;
+	border-radius: 100%;
+	vertical-align: bottom;
+	
+	    margin-right: 12px;
+}
+
+.detail-describe {
+	font-size: 14px;
+	    margin-bottom: 12px;
+}
+
+.detail-hui {
+	color: #737373
+}
+
+.detail-block {
+	color: #333333;
+	font-size: 14px;
+	float: right;
+	padding-top: 7px;
+	padding-right: 10px;
+}
+
+.div-content p {
+	margin-top: 0px;
+	margin-bottom: 12px;
+	padding: 0px;
+	clear: both;
+	font-size: medium;
+	line-height: 28.4444px;
+	white-space: normal;
+	color: #353535;
+}
+
+.mui-scroll-wrapper {
+	/*top:250px;*/
+	/*overflow: initial;*/
+}
+
+#cc {
+	position: relative;
+	height: 100%;
+}
+
+#pullrefresh {
+	/*height: 100%;*/
+}
+
+/*轮播文字滚动*/
+
+#scroll_div .pad_right {
+    font-size: 13px;
+}
+
+.scroll_text {
+    position: relative;
+    background: rgba(0, 0, 0, .5);
+        bottom: 26px;
+    left: 0;
+    z-index: 999;
+}
+
+#scroll_div {
+    height: 26px;
+    overflow: hidden;
+    white-space: nowrap;
+    /*width:100%;*/
+    margin: 0 30px;
+    /*position: relative;*/
+    color: #FFFFFF;
+    line-height: 25px;
+}
+
+#scroll_begin {
+    /* padding: 0 20px; */
+    padding-left: 6px;
+}
+
+.scroll_text i.icon-laba {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 10px;
+    top: 4px;
+    z-index: 10;
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
+.scroll_text i.icon-wrong {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    right: 8px;
+    top: 3px;
+    z-index: 10;
+    color: #FFFFFF;
+    font-size: 17.4px;
+}
+
+#scroll_begin,
+#scroll_end {
+    display: inline;
+}
+
+/*.news{
+	position: relative;
+	top: 0;
+	left: 0;
+	z-index: 999;
+}*/
+
+.pp8{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.input-less{
+	font-size: 14px;
+}
+.seach{
+	vertical-align: middle;
+    padding-left: 16px;
+    color: #3284da;
+        font-size: 20px;
+}
+
+.request-tg {
+    background-color: #FFFFFF !important;
+    /* border-top: 1px solid #eae9ea !important; */
+}
+.request-tg  li a img{
+	width: 100%;
+	    width:44px;
+    height: 42px;
+}
+.request-tg  li{
+	border-bottom:0 !important;
+}
+.request-tg  li.mui.active{
+	background: #FFFFFF !important;
+}
+.mui-grid-view.mui-grid-9 .mui-table-view.mui.active{
+	background: #FFFFFF !important;
+}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell.mui-active{
+	background: #FFFFFF !important;
+}

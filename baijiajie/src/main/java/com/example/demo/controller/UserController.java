@@ -6,11 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,13 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
-
-import net.sf.json.JSON;
-import net.sf.json.JSONArray;
 
 @RestController
 public class UserController {
@@ -65,7 +56,7 @@ public class UserController {
             System.out.println(str[0]);
         	System.out.println(phone+"-------------------------------");
             try {
-            	File nfile = new File("src/main/resources/pics/"+phone+file.getOriginalFilename());
+            	File nfile = new File("C:\\Users\\Administrator\\Desktop\\pics\\"+phone+file.getOriginalFilename());
                 BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(nfile));
                 out.write(file.getBytes());
                 out.flush();
@@ -85,7 +76,7 @@ public class UserController {
         	str[1] = file.getOriginalFilename();
             System.out.println(str[1]);
             try {
-            	File nfile = new File("src/main/resources/pics/"+phone+file.getOriginalFilename());
+            	File nfile = new File("C:\\Users\\Administrator\\Desktop\\pics\\"+phone+file.getOriginalFilename());
                 BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(nfile));
                 out.write(file.getBytes());
                 out.flush();

@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="blue" />
+		<!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+		<title>新口子资讯</title>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/news-main.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont1.css" />
+		
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css">
+		<!--    <link rel="stylesheet" type="text/css" href="css/pulltorefresh.css"/>-->
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+	.mui-pull-bottom-pocket{
+		height: 90px;
+		    bottom: 50px;
+	}
+	/*.request-tg{
+		position: absolute;
+		top: 0;
+		left: 0;
+		    z-index: 9999;
+	}*/
+	
+	/*.tan_fany{
+		position: fixed;
+		top
+	}*/
+	.mui-toast-container {
+    bottom: 32%;
+}
+	</style>
+
+	<body>
+		<div class="mui-content">
+
+			<div id="pullrefresh" class="mui-scroll-wrapper">
+					<ul id="" class="">
+						<div class="news" id="">
+							<!--<ul class="news-title clear">
+								<li>全站资讯</li>
+								<li>资讯分类</li>
+							</ul>-->
+							<div class="pic" id="matchingbj">
+								
+								
+								<div class="swiper-container">
+									<div class="swiper-wrapper">
+										
+									</div>
+									<!-- Add Pagination -->
+									<!--<div class="swiper-pagination"></div>-->
+									<!-- Add Arrows -->
+									<!--<div class="swiper-button-next"></div>
+									<div class="swiper-button-prev"></div>-->
+								</div>
+
+								<div class="scroll_text">
+									
+								</div>
+								
+								
+							</div>
+							<h5 style="visibility: hidden;" class="news-h5">资讯</h5>
+							<ul class="mui-table-view mui-grid-view mui-grid-9 request-tg">
+								<li url="http://mp.weixin.qq.com/s/zH3iQn6ytMwUyWPJ2anbUg" id="" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4 pengyuan po">
+					                <a  href="javascript:;">
+					                    <img src="picture/shequvip.png"/>
+					                    <div class="mui-media-body">VIP社群</div>
+					                </a>
+					            </li>
+					            <li url="../../Upgrade/view/upgrade.html" id="" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4 pengyuan po">
+					                <a  href="javascript:;">
+					                    <img src="picture/vip.png"/>
+					                    <div class="mui-media-body">升级VIP</div>
+					                </a>
+					            </li>
+					            <li  url="../../news/view/my_fany.html" id="erwmt8" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4 po">
+					                <a  href="javascript:;">
+					                    <img src="picture/jl.png"/>
+					                    <div class="mui-media-body">我要返佣</div>
+					                </a>
+					            </li>
+					            <!--<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4 po">
+					                <a  href="http://a.rrjiekuan.com/bjj/proxyw/login.html">
+					                   <img src="picture/kc.png"/>
+					                    <div class="mui-media-body">网贷课程</div>
+					                </a>
+					            </li>-->
+					        </ul>
+							
+							<form class="mui-input-group">
+								<div class="mui-input-row" style="      margin-top: 20px;  height: 36px;">
+									<span class="mui-icon mui-icon-search seach"></span>
+									<input style="width: 85%;padding-left: 0;     height: 36px;" type="text" class="mui-input-clear input-less" placeholder="请输入关键字">
+								</div>
+							</form>
+							<!--<h5 onClick="window.location.href='https://www.baidu.com/'" class="news-h5">咨询</h5>	-->
+							
+							<input type="hidden" to="" name="" id="page" value="1" />
+						</div>
+						<div class="dd news-box">
+							<span class="loading-text">正在加载中...</span>
+						</div>
+						
+						<!--<li>
+						<div class="news-text" data-id="', data[i].id, '" >
+						<img src="', data[i].cover, '"/>
+						<div class="news-right">
+						<dl class="dl-one"> ', data[i].title, '</dl>
+						<dl class="dl-two">', data[i].description, '</dl>
+						<dl class="dl-tht"><span>O记_小前提</span>03月15日</dl>
+						</div>
+						</div>
+						</li>-->
+					</ul>
+				
+			</div>
+
+		</div>
+		 <nav class="mui-bar mui-bar-tab">
+        <a  href = "/首页.html"class="mui-tab-item">
+            <span class="mui-icon iconfont icon-shouyeshouye1" style="font-size: 23px; top: 3px;"></span>
+            <span class="mui-tab-label">首页</span>
+        </a>
+        <!--<a class="mui-tab-item">
+            <span class="mui-icon iconfont icon-jiekuan"></span>
+            <span class="mui-tab-label">借款机构</span>
+        </a>-->
+       <a href = "/百家放款.html" class="mui-tab-item">
+            <span style="font-size: 23px;" class="mui-icon iconfont icon-guanwang"></span>
+            <span class="mui-tab-label">网贷</span>
+        </a>
+       	<a href = "/借条.html" class="mui-tab-item">
+            <span class="mui-icon iconfont icon-jiekuan-xuanzhong"></span>
+            <span class="mui-tab-label">借条</span>
+        </a>
+        <a class="mui-tab-item  mui-active">
+            <span style="font-size: 23px;" class="mui-icon iconfont icon-3zuixinkouzid45616"></span>
+            <span class="mui-tab-label">新口子</span>
+        </a>
+        <!--<a class="mui-tab-item">
+            <span class="mui-icon iconfont icon-yaoqing1"></span>
+            <span class="mui-tab-label">邀请</span>
+        </a>-->
+        <a href="/member.html" class="mui-tab-item">
+            <span class="mui-icon iconfont icon-mg-user"></span>
+            <span class="mui-tab-label">会员中心</span>
+        </a>
+    </nav>
+	</body>
+	
+	
+	
+	<script src="js/jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/globle.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/navtab.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/template.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/news.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	
+		var swiper = new Swiper('.pic .swiper-container', {
+			pagination: '.swiper-pagination',
+			nextButton: '.swiper-button-next',
+			prevButton: '.swiper-button-prev',
+			slidesPerView: 1,
+			paginationClickable: true,
+			spaceBetween: 0,
+			loop: true,
+			autoplay: 3000,
+			speed: 500,
+			loop: true,
+			observer: true,
+			observeParents: true,
+			autoplayDisableOnInteraction: false
+		});
+		
+		
+		mui('.request-tg ').on('tap', '.po', function() {
+
+					var li_url=this.getAttribute("url");
+					if(li_url){
+						window.location=li_url
+						mui.openWindow({
+							id: li_url,
+							url: li_url
+						});
+					}else{
+						mui.toast('敬请期待')
+					}
+
+					
+
+				})
+			
+		
+		
+		
+		
+		
+	</script>
+
+</html>

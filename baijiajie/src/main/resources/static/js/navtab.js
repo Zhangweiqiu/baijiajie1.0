@@ -31,14 +31,14 @@
 //			alert(true)
 			item.addEventListener("tap", function() {
 				mui.openWindow({
-					url: taburl+"/w_bjj/home.html",
+					url: "/首页.html",
 					id: "home",
 					createNew: true,
 				})
 			});
 			item1.addEventListener("tap", function() {
 				mui.openWindow({
-					url: taburl+"/w_bjj/saixuan.html",
+					url: "/saixuan.html",
 					id: "saixuan",
 					createNew: true,
 				})
@@ -46,21 +46,21 @@
 
 			item2.addEventListener("tap", function() {
 				mui.openWindow({
-					url: taburl+"/w_bjj/jietiao.html?type_two=1",
+					url: "/借条.html",
 					id: "saixuan",
 					createNew: true,
 				})
 			});
 			item3.addEventListener("tap", function() {
 				mui.openWindow({
-					url: taburl+"/w_bjj/news/view/news-main.html",
+					url: "/news-main.html",
 					id: "news-main",
 					createNew: true,
 				})
 			});
 			item4.addEventListener("tap", function() {
 				mui.openWindow({
-					url: taburl+"/w_bjj/member.html",
+					url: "/member.html",
 					id: "member",
 					createNew: true,
 				})
@@ -68,16 +68,16 @@
 		} else {
 //			alert(false)
 			item.onclick = function() {
-				window.location = 'home.html';	
+				window.location = '首页.html';	
 			}
 			item1.onclick = function() {
 				window.location = 'saixuan.html';
 			}
 			item2.onclick = function() {
-				window.location = 'jietiao.html?type_two=1';
+				window.location = '借条.html';
 			}
 			item3.onclick = function() {
-				window.location = 'news/view/news-main.html';
+				window.location = 'news-main.html';
 			}
 			item4.onclick = function() {
 				window.location = 'member.html';

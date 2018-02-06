@@ -683,7 +683,7 @@ function ajax_limu(i) {
     }
     if (do1 == 1) {
         console.log(2)
-       /** $.ajax({
+        $.ajax({
             type: "post",
             url: getUrl() + "/index.php?s=/ox2/user/limu_get_status",
             dataType: 'json',
@@ -700,7 +700,7 @@ function ajax_limu(i) {
                     setCookie('code', '');
                 }
             }
-        })**/
+        })
     }
 
 }

@@ -95,6 +95,14 @@ public class UserInfo {
 	
 	private Integer first;
 	
-	
+	private String phone;
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	
 }

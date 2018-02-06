@@ -6,7 +6,7 @@ import com.example.demo.model.weixinmodel.ComplexButton;
 import com.example.demo.model.weixinmodel.Menu;
 
 public class CreateMenu {
-	public static Menu getMenu() {
+	public static Menu getMenu(String openid) {
 		CommonButton btn11 = new CommonButton(); 
 		btn11.setName("🔥开始赚钱");
 		btn11.setKey("11");
@@ -35,8 +35,8 @@ public class CreateMenu {
 		CommonButton btn22 = new CommonButton(); 
 		btn22.setName("✅进入首页");
 		btn22.setKey("22");
-		btn22.setType("click");
-		
+		btn22.setType("view");
+		btn22.setUrl("www.baidu.com?"+openid);
 		
 		CommonButton btn23 = new CommonButton(); 
 		btn23.setName("✅人工马上审核");

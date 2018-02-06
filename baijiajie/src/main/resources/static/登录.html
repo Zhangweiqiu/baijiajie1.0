@@ -89,6 +89,7 @@ var user
 					$.session.set('user',user);
 					window.location.href = data.url;
 				}else{
+					alert("密码或账号错误，请重新登入");
 					window.location.href = "/登录.html";
 				}
 			}

@@ -102,7 +102,7 @@
 
     <div class="sharing">
         <div class="erwei">
-            <img src="/images/qrcode.jpg" />
+            <img src="" />
 
         </div>
         <div class="namg clear">
@@ -110,7 +110,7 @@
                 <img src="" />
             </div>
             <p>
-                <i style="margin-bottom: 0px;">我是<span>土豆</span></i>
+                <i style="margin-bottom: 0px;">我是<span id = "nickname"></span></i>
                 <i>我已经赚取<span id='cache_coin'>0</span>元</i>
                 <b>过期时间:</b>
             </p>
@@ -123,93 +123,22 @@
 <script src="js/jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
-    $('body').height($(window).height());
-    fans_ini();
-    var openid = getCookie('openid');
-    var fans = getCookies('fans');
-    if (!fans.verify) {
-        location_page_reg();
-    }
-	
-	function timeurl(){
-			var datas = {
-            'uniacid': get_uniacid(),
-            token: get_token(),
-            openid: openid
-            };
-            $.ajax({
-                type: "post",
-                url: api_getFansQr(),
-                dataType: 'json',
-                async: false,
-                data: datas,
-                success: function(res) {
-                    if (res.status == 1) {
-                        console.log(res.data.qr_url)
-                        setCookies('qr_url', res.data);
-                        setCookies('qr_time', new Date().getTime());
-                    } else {
-                        alert(res.info);
-                    }
-                }
-            });
-		}
-	
-	var dataurl= getCookies('qr_url')
-	var qrtime=getCookie('qr_time')
-
-	if(new Date().getTime() - qrtime > 1000*60*60*12 || !dataurl){
-		timeurl()
-//		console.log(qrtime)
-//  	console.log(new Date().getTime())
-    	console.log(new Date().getTime() - qrtime > 1000*60*60*12)	
-   }
-	var dataurl= getCookies('qr_url')
-	if(dataurl.type==0){
-		$('.erwei img').attr('src', dataurl.qr_url);
-		$('.namg b').html('过期时间:' + dataurl.expire_date);
-	}else{
-		$('.erwei img').attr('src', dataurl.qr_url);
-		$('.namg b').html('永久二维码');
-	}
-	
-    if (fans) {
-        $('.namg p i:first-child span').text(fans.nickname);
-        $('.name-img img').attr('src', fans.headimgurl);
-        if (fans.coin_total > 0) {
-            $('#cache_coin').text(fans.coin_total);
-        }
-    } else if (!fans.coin) {
-        var datas = {
-            'uniacid': get_uniacid(),
-            token: get_token(),
-            openid: openid
-        };
-        $.ajax({
-            type: "post",
-            url: api_fans_info(),
-            dataType: 'json',
-            async: false, //设置为同步操作就可以给全局变量赋值成功 
-            data: datas,
-            success: function(res) {
-                if (res.status == 1) {
-                    var data = res.data;
-                    $('.erwei img').attr('src', data.qr_url);
-                    $('.namg p i:first-child span').text(data.nickname);
-                    $('.name-img img').attr('src', data.headimgurl);
-                    $('.erwei img').attr('src', data.qr_url);
-                    if (data.coin > 0) {
-                        $('#cache_coin').text(data.coin);
-                    }
-                }
-                if (data.qr_type == 0) {
-                    $('.namg b').html('过期时间:' + data.qr_expire_date);
-                } else {
-                    $('.namg b').html('永久二维码');
-                }
-            }
-        });
-    }
+    
+    
+    
+    $(document).ready(function(){
+    	   var url = location.search; //获取url中"?"符后的字串    
+    	   if (url.indexOf("?") != -1) {   
+    	      var str = url.substr(1);   
+    	      strs = str.split("&");
+  			$("#nickname").html(strs[0]);
+  			$('.erwei img').attr('src',"/qrcode/"+strs[1]);
+  			$('.name-img img').attr('src', "/headimg/"+strs[1]);
+  		  	$('#cache_coin').text(strs[2]);
+       
+    	   }   
+    	
+    });
 </script>
 
 </html>

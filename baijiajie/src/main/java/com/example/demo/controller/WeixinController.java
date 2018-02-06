@@ -8,7 +8,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.dom4j.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,7 +43,7 @@ public class WeixinController {
 	private String TOKEN = "baijiajie";
 	
 	@GetMapping(value="")
-	public void doGet(HttpServletRequest request,HttpServletResponse response) {
+	public void doGet(HttpServletRequest request,HttpServletResponse response)throws Exception {
 		System.out.println("接入成功");
 		String signature = request.getParameter("signature");
 		String timestamp = request.getParameter("timestamp");
@@ -69,10 +68,9 @@ public class WeixinController {
 		}
 		
 		String at = GetToken.accessToken.getToken();
-		System.out.println(at + "*************************");
 		int result = 0 ;
 		if(at != null) {
-			result = menuService.createMenu(CreateMenu.getMenu(), at);
+			result = menuService.createMenu(CreateMenu.getMenu(null), at);
 			if(0==result) {
 				System.out.println("菜单创建成功！");
 			}else {
@@ -110,34 +108,44 @@ public class WeixinController {
 		
 		//获取个人信息并进行储存
 		String at = GetToken.accessToken.getToken();
+		int result = 0 ;
+		if(at != null) {
+			result = menuService.createMenu(CreateMenu.getMenu(fromUserName), at);
+			if(0==result) {
+				System.out.println("菜单创建成功！");
+			}else {
+				System.out.println("菜单创建失败,错误码：" + result);
+			}
+		}
+		
+		
 		String url2 = UserInfo.getUserMessage(at, fromUserName);
 		JSONObject jsonObject = WeixinUtil.httpRequest(url2, "GET", null);
-		System.out.println(jsonObject);
 		if(jsonObject != null) {
 			nickname = jsonObject.getString("nickname");
 			headimgurl = jsonObject.getString("headimgurl");
 			
 		}
-		Download.download(headimgurl, fromUserName+".jpg", "E:\\baijiajie1.0\\baijiajie\\src\\main\\resources\\static\\headimg");
+		Download.download(headimgurl, fromUserName+".jpg", "C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.24-windows-x64\\apache-tomcat-8.5.24\\webapps\\ROOT\\WEB-INF\\classes\\static\\headimg");
 		
 		eventType = map.get("Event");
 		if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_EVENT)) {
 			
 			if(eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) { //关注公众号时推送，或未关注
-				respContent = "欢迎您加入百家借大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]";
+				respContent = "欢迎您加入享来介大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]";
 				father = map.get("EventKey");
 				father = father.replace("qrscene_", "");
 				userinfoService.addUser(fromUserName, nickname, fromUserName+".jpg", father);
 			}
 			else if(eventType.equals(MessageUtil.EVENT_TYPE_SCAN)) {//已关注群体，刷二维码
-				respContent = "欢迎您加入百家借大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]";
+				respContent = "欢迎您加入享来介大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]";
 			}
 			else if(eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {//自定义菜单点击事件
 				String eventKey = map.get("EventKey");
 				if(eventKey.equals("11")) {
-					respContent = "【百家借】\n" + 
+					respContent = "【享来介】\n" + 
                 			"火爆上线，实力招商！\n" + 
-                			"百家借条机构！百家网贷平台！！\n" + 
+                			"享来介条机构！百家网贷平台！！\n" + 
                 			"\n" + 
                 			"全网首创佣金制度：\n" + 
                 			"百家机构，百份佣金\n" + 
@@ -152,16 +160,16 @@ public class WeixinController {
                 			"猛戳下方，开始赚钱↓↓↓↓\n" + 
                 			" <a href=\"";
 				}else { //
-					respContent = "欢迎您加入百家借大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]\r\n";
+					respContent = "欢迎您加入享来介大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]\r\n";
 				}
 			}
 		}	
 		
 			//处理文本类型，回复用户输入的内容
 		else if(msgType == MessageUtil.RESP_MESSAGE_TYPE_TEXT) {
-				respContent = "欢迎您加入百家借大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]\r\n";
+				respContent = "欢迎您加入享来介大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]\r\n";
 		}else{
-				respContent = "欢迎您加入百家借大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]\r\n";
+				respContent = "欢迎您加入享来介大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]\r\n";
 		}
 		
 		//回复消息
@@ -179,16 +187,15 @@ public class WeixinController {
 		//生成二维码
 		String expireSeconds = "2592000";
 		JSONObject json = qrcodeService.createTicket(expireSeconds, at, fromUserName);
-		System.out.println(json);
 		if(eventType != null) {
 			if(eventType.equals(MessageUtil.EVENT_TYPE_CLICK) ) {
 				if(json != null) {
 					String url3 = qrcodeService.qrcode_get_url.replace("TICKET", json.getString("ticket"));
-					System.out.println(url3);
-					Download.download(url3, fromUserName+".jpg", "E:\\baijiajie1.0\\baijiajie\\src\\main\\resources\\static\\qrcode");
-					respContent += url3 +" \">【 查看我的推广海报】</a>\n" + 
+					Download.download(url3, fromUserName+".jpg", "C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.24-windows-x64\\apache-tomcat-8.5.24\\webapps\\ROOT\\WEB-INF\\classes\\static\\qrcode");
+					com.example.demo.model.weixinmodel.UserInfo u = userinfoService.findUser(fromUserName);
+					respContent += "http://123.207.111.95/sharing.html?"+u.getNickname()+"&"+u.getheadimgurl()+"&"+u.getMoney()+" \">【 查看我的推广海报】</a>\n" + 
 		        			"\n"+
-		        			" <a href=\"www.baidu.com?openid=123\">【 查看我的分享链接】</a>\n";
+		        			" <a href=\"http://123.207.111.95/piaoq.html?openid="+u.getOpenid()+"\">【 查看我的分享链接】</a>\n";
 				}else {
 					respContent +=" \">【 查看我的推广海报】</a>\n" + 
 		        			"\n"+

@@ -36,7 +36,8 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
+
+		<exclusions>
                 <exclusion>
                     <artifactId>log4j-over-slf4j</artifactId>
                     <groupId>org.slf4j</groupId>
@@ -46,6 +47,7 @@
                     <artifactId>spring-boot-starter-tomcat</artifactId>
                 </exclusion>
             </exclusions>
+
 		</dependency>
 
 		<dependency>
@@ -89,6 +91,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		 <finalName>ThirdProject</finalName>
 	</build>
 
 
