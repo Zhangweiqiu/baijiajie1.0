@@ -58,6 +58,7 @@ public class UserInfoService {
 	}
 	
 	public UserInfo findUser(String openId) {
+		System.out.println(openId+"33333333");
 		return userinfoDao.findOne(openId);
 	}
 }

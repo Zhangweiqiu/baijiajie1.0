@@ -111,7 +111,7 @@ public class MessageUtil {
      */
     @SuppressWarnings("unchecked")
     //屏蔽某些编译时的警告信息(在强制类型转换的时候编译器会给出警告)
-    public static Map<String , String> parseXml(HttpServletRequest request) throws IOException, DocumentException{
+    public static   Map<String , String> parseXml(HttpServletRequest request) throws IOException, DocumentException{
     	//将解析结果储存在HashMap上
     	Map<String, String> map = new HashMap<String, String>();
     	

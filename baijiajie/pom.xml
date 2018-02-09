@@ -49,7 +49,6 @@
             </exclusions>
 
 		</dependency>
-
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -91,7 +90,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		 <finalName>ThirdProject</finalName>
 	</build>
 
 

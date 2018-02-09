@@ -210,12 +210,11 @@
 		<div class="mui-content mui-personal">
 			<!--头像昵称-->
 			<div class="personal" id="member" style="">
-				<script type="text/html" id="centent">
 					<div class="meb-div">
-						<li class="meb-img"><img src="picture/58970afdcdba4c04bc3b6043a191730e.gif" alt="" /></li>
+						<li class="meb-img"><img id="zhaopian" src=""  alt="" /></li>
 						<li class="meb-span">
-							<span style="font-size: 14px; margin-top: 6px;">昵称：{{nickname}}</span>
-							<span style="font-size: 13px; margin-top: 4px;">等级： {{vip_name}}　上级：{{invite_nickname}}</span>
+							<span style="font-size: 14px; margin-top: 6px;" id = "nickname"></span>
+							<span style="font-size: 13px; margin-top: 4px;">等级：<!-- {{vip_name}}  -->　上级：<!-- {{invite_nickname}} --></span>
 						</li>
 						<li id="meb-meb" class="meb-meb">
 							<a href="personal.html" style="color: #fff;">个人中心</a>
@@ -224,15 +223,14 @@
 					</div>
 					<div class="meb-mony">
 						<li>
-							<span>{{coin}}</span>
+							<span id='cache_coin'></span>
 							<span>收入余额</span>
 						</li>
 						<li>
-							<span>{{coin_tx}}</span>
+							<!--  <span>{{coin_tx}}</span>-->
 							<span>已提余额</span>
 						</li>
 					</div>
-				</script>
 				<!--<div class="meb-qd">
         		<p>[会员等级：渠道经理]</p>
         		<p>我的上级：亿融掌上财富</p>
@@ -399,10 +397,10 @@
 
 		<!--底部导航-->
 		<nav class="mui-bar mui-bar-tab">
-			<a  href = "/首页.html"class="mui-tab-item">
-				<span class="mui-icon iconfont icon-shouyeshouye1" style="font-size: 23px; top: 3px;"></span>
-				<span class="mui-tab-label">首页</span>
-			</a>
+			<a  href=""   onclick="shouye(this)" class="mui-tab-item">
+            <span class="mui-icon iconfont icon-shouyeshouye1" style="font-size: 23px; top: 3px;"></span>
+            <span class="mui-tab-label">首页</span>
+        </a>
 			<!--<a class="mui-tab-item">
 	            <span class="mui-icon iconfont icon-jiekuan"></span>
 	            <span class="mui-tab-label">借款机构</span>
@@ -443,5 +441,35 @@
 	<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/template.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript">
+    
+    
+	var nickname1;
+    var headimg1;
+    var cache_coin1;
+    $(document).ready(function(){
+    	   var url = location.search; //获取url中"?"符后的字串    
+    	   if (url.indexOf("?") != -1) {   
+    	      var str = url.substr(1);   
+    	      strs = str.split("&");
+    	      nickname1=strs[0];
+    	      headimg1=strs[1];
+    	      cache_coin1=strs[2]
+  			$("#nickname").html("昵称："+strs[0]);
+  			$d = document.querySelector('#zhaopian'),	
+  		    $d.setAttribute("src", "/headimg/"+strs[1]);
+  			<!--$('.erwei img').attr('src',"/qrcode/"+strs[1]);-->
+  			<!--$('.name-img img').attr('src', "/headimg/"+strs[1]);-->
+  		  	$('#cache_coin').text(strs[2]);
+       
+    	   }   
+    	
+    });
+    function shouye(e) {
+		e.href = "/首页.html?"+nickname1+"&"+headimg1+"&"+cache_coin1;//要访问的网址 
+	
+ 
+ }   
+</script>
 
 </html>

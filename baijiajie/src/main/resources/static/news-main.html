@@ -14,7 +14,6 @@
 		
 		<link rel="stylesheet" type="text/css" href="css/iconfont.css">
 		<!--    <link rel="stylesheet" type="text/css" href="css/pulltorefresh.css"/>-->
-		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<style type="text/css">
 	.mui-pull-bottom-pocket{
@@ -125,7 +124,7 @@
 
 		</div>
 		 <nav class="mui-bar mui-bar-tab">
-        <a  href = "/首页.html"class="mui-tab-item">
+        <a  href=""   onclick="shouye(this)" class="mui-tab-item">
             <span class="mui-icon iconfont icon-shouyeshouye1" style="font-size: 23px; top: 3px;"></span>
             <span class="mui-tab-label">首页</span>
         </a>
@@ -149,7 +148,7 @@
             <span class="mui-icon iconfont icon-yaoqing1"></span>
             <span class="mui-tab-label">邀请</span>
         </a>-->
-        <a href="/member.html" class="mui-tab-item">
+        <a id='aa' href=""   onclick="huiyuan(this)" class="mui-tab-item">
             <span class="mui-icon iconfont icon-mg-user"></span>
             <span class="mui-tab-label">会员中心</span>
         </a>
@@ -159,6 +158,7 @@
 	
 	
 	<script src="js/jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquerysession.js"></script>
 	<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/globle.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/navtab.js" type="text/javascript" charset="utf-8"></script>
@@ -166,7 +166,19 @@
 	<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/news.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
+	var nickname1 = $.session.get('nickname');
+    var headimg1 = $.session.get('headimg');
+    var cache_coin1 = $.session.get('cache_coin');
+	function huiyuan(e) {
+			e.href = "/member.html?"+nickname1+"&"+headimg1+"&"+cache_coin1;//要访问的网址 
+		
+	  
+	  }  
+	function shouye(e) {
+		e.href = "/首页.html?"+nickname1+"&"+headimg1+"&"+cache_coin1;//要访问的网址 
 	
+ 
+ }   
 		var swiper = new Swiper('.pic .swiper-container', {
 			pagination: '.swiper-pagination',
 			nextButton: '.swiper-button-next',

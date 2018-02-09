@@ -1,12 +1,20 @@
 package com.example.demo.others;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.example.demo.model.weixinmodel.Button;
 import com.example.demo.model.weixinmodel.CommonButton;
 import com.example.demo.model.weixinmodel.ComplexButton;
 import com.example.demo.model.weixinmodel.Menu;
+import com.example.demo.service.weixin.UserInfoService;
+import com.example.demo.model.weixinmodel.UserInfo;
 
 public class CreateMenu {
-	public static Menu getMenu(String openid) {
+	
+	
+	
+	public   Menu getMenu(String Nickname,String headimgurl,Float Money) {
+		System.out.println(Nickname+"       "+headimgurl+"    "+Money);
 		CommonButton btn11 = new CommonButton(); 
 		btn11.setName("🔥开始赚钱");
 		btn11.setKey("11");
@@ -36,7 +44,7 @@ public class CreateMenu {
 		btn22.setName("✅进入首页");
 		btn22.setKey("22");
 		btn22.setType("view");
-		btn22.setUrl("www.baidu.com?"+openid);
+		btn22.setUrl("http://123.207.111.95/首页.html?"+Nickname+"&"+headimgurl+"&"+Money);
 		
 		CommonButton btn23 = new CommonButton(); 
 		btn23.setName("✅人工马上审核");

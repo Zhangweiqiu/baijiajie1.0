@@ -67,16 +67,18 @@ public class WeixinController {
 			e.printStackTrace();
 		}
 		
-		String at = GetToken.accessToken.getToken();
-		int result = 0 ;
-		if(at != null) {
-			result = menuService.createMenu(CreateMenu.getMenu(null), at);
-			if(0==result) {
-				System.out.println("菜单创建成功！");
-			}else {
-				System.out.println("菜单创建失败,错误码：" + result);
-			}
-		}
+		
+//		String at = GetToken.accessToken.getToken();
+//		int result = 0 ;
+//		if(at != null) {
+//			result = menuService.createMenu(CreateMenu.getMenu(null), at);
+//			if(0==result) {
+//				System.out.println("菜单创建成功！");
+//			}else {
+//				System.out.println("菜单创建失败,错误码：" + result);
+//			}
+//		}
+		
 	}
 	
 	@PostMapping(value="")
@@ -105,18 +107,18 @@ public class WeixinController {
 		//推送事件类型
 		String eventType = null;
 		
-		
-		//获取个人信息并进行储存
+		System.out.println(fromUserName+"11111");
+//		//获取个人信息并进行储存
 		String at = GetToken.accessToken.getToken();
-		int result = 0 ;
-		if(at != null) {
-			result = menuService.createMenu(CreateMenu.getMenu(fromUserName), at);
-			if(0==result) {
-				System.out.println("菜单创建成功！");
-			}else {
-				System.out.println("菜单创建失败,错误码：" + result);
-			}
-		}
+//		int result = 0 ;
+//		if(at != null) {
+//			result = menuService.createMenu(CreateMenu.getMenu(fromUserName), at);
+//			if(0==result) {
+//				System.out.println("菜单创建成功！");
+//			}else {
+//				System.out.println("菜单创建失败,错误码：" + result);
+//			}
+//		}
 		
 		
 		String url2 = UserInfo.getUserMessage(at, fromUserName);
@@ -136,6 +138,18 @@ public class WeixinController {
 				father = map.get("EventKey");
 				father = father.replace("qrscene_", "");
 				userinfoService.addUser(fromUserName, nickname, fromUserName+".jpg", father);
+				int result = 0 ;
+				if(at != null) {
+					System.out.println("11111");
+					com.example.demo.model.weixinmodel.UserInfo u = userinfoService.findUser(fromUserName);
+					CreateMenu createMenu = new CreateMenu();
+					result = menuService.createMenu(createMenu.getMenu(u.getNickname(),u.getheadimgurl(),u.getMoney()), at);
+					if(0==result) {
+						System.out.println("菜单创建成功！");
+					}else {
+						System.out.println("菜单创建失败,错误码：" + result);
+					}
+				}
 			}
 			else if(eventType.equals(MessageUtil.EVENT_TYPE_SCAN)) {//已关注群体，刷二维码
 				respContent = "欢迎您加入享来介大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]";
