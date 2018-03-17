@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -83,7 +84,8 @@ public class WeixinController {
 	
 	@PostMapping(value="")
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		response.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		Map<String,String>  map = MessageUtil.parseXml(request);
 		 // 发送方帐号（open_id）
@@ -94,7 +96,7 @@ public class WeixinController {
         String msgType = map.get("MsgType");
         //接受到内容
         String content = map.get("Content");
-		
+//        String code = map.get("code");
 		// 默认返回的文本消息内容
         String respContent = "";
 		
@@ -102,11 +104,11 @@ public class WeixinController {
 		String nickname = null;
 		//头像
 		String headimgurl = null;
-		//上一级openid
+		//上一级openid9 
 		String father = null;
 		//推送事件类型
 		String eventType = null;
-		
+		String code = null;
 		System.out.println(fromUserName+"11111");
 //		//获取个人信息并进行储存
 		String at = GetToken.accessToken.getToken();
@@ -125,14 +127,12 @@ public class WeixinController {
 		JSONObject jsonObject = WeixinUtil.httpRequest(url2, "GET", null);
 		if(jsonObject != null) {
 			nickname = jsonObject.getString("nickname");
-			headimgurl = jsonObject.getString("headimgurl");
-			
+			headimgurl = jsonObject.getString("headimgurl");	
 		}
 		Download.download(headimgurl, fromUserName+".jpg", "C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.24-windows-x64\\apache-tomcat-8.5.24\\webapps\\ROOT\\WEB-INF\\classes\\static\\headimg");
 		
 		eventType = map.get("Event");
 		if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_EVENT)) {
-			
 			if(eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) { //关注公众号时推送，或未关注
 				respContent = "欢迎您加入享来介大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]";
 				father = map.get("EventKey");
@@ -143,7 +143,9 @@ public class WeixinController {
 					System.out.println("11111");
 					com.example.demo.model.weixinmodel.UserInfo u = userinfoService.findUser(fromUserName);
 					CreateMenu createMenu = new CreateMenu();
-					result = menuService.createMenu(createMenu.getMenu(u.getNickname(),u.getheadimgurl(),u.getMoney()), at);
+					result = menuService.createMenu(createMenu.getMenu(),at);
+					//code = request.getParameter("code");
+					
 					if(0==result) {
 						System.out.println("菜单创建成功！");
 					}else {
@@ -155,8 +157,10 @@ public class WeixinController {
 				respContent = "欢迎您加入享来介大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]";
 			}
 			else if(eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {//自定义菜单点击事件
+				
 				String eventKey = map.get("EventKey");
 				if(eventKey.equals("11")) {
+					System.out.println(code+"qqqqqqqq");
 					respContent = "【享来介】\n" + 
                 			"火爆上线，实力招商！\n" + 
                 			"享来介条机构！百家网贷平台！！\n" + 
@@ -230,4 +234,20 @@ public class WeixinController {
 		out.close();
 	}
 	
+	@PostMapping(value="/getweixininfo")
+	public Map<String,Object> getweixininfo(String code) {
+		String get_access_token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?"
+                + "appid=wxc82f3a1b0a17373d"
+                + "&secret=fee5fcfe97328d8c0c47b3a4e443513f"
+                + "&code=CODE&grant_type=authorization_code";
+		get_access_token_url = get_access_token_url.replace("CODE", code);
+		JSONObject jsonObject = WeixinUtil.httpRequest(get_access_token_url, "GET", null);
+		String openid = jsonObject.getString("openid");
+		com.example.demo.model.weixinmodel.UserInfo u = userinfoService.findUser(openid);
+		Map<String,Object> map = new HashMap<>();
+		map.put("nickname", u.getNickname());
+		map.put("headimg", u.getHeadimgurl());
+		map.put("cache_coin", u.getMoney());
+		return map;
+	}
 }

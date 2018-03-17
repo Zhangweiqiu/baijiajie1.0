@@ -1,5 +1,8 @@
 package com.example.demo.others;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.demo.model.weixinmodel.Button;
@@ -13,8 +16,7 @@ public class CreateMenu {
 	
 	
 	
-	public   Menu getMenu(String Nickname,String headimgurl,Float Money) {
-		System.out.println(Nickname+"       "+headimgurl+"    "+Money);
+	public   Menu getMenu() throws UnsupportedEncodingException {
 		CommonButton btn11 = new CommonButton(); 
 		btn11.setName("🔥开始赚钱");
 		btn11.setKey("11");
@@ -44,7 +46,9 @@ public class CreateMenu {
 		btn22.setName("✅进入首页");
 		btn22.setKey("22");
 		btn22.setType("view");
-		btn22.setUrl("http://123.207.111.95/首页.html?"+Nickname+"&"+headimgurl+"&"+Money);
+		//String reurl = URLEncoder.encode("http://123.207.111.95/首页.html","utf-8");
+		String reurl ="http://123.207.111.95/首页.html";
+		btn22.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx04a54d6d3c808fbf&redirect_uri="+reurl+"&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect");
 		
 		CommonButton btn23 = new CommonButton(); 
 		btn23.setName("✅人工马上审核");

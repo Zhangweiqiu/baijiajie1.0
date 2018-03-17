@@ -745,10 +745,25 @@
 		   if (url.indexOf("?") != -1) {   
 		      var str = url.substr(1);   
 		      strs = str.split("&");
-		      $.session.set('nickname',strs[0]);
-		      $.session.set('headimg',strs[1]);
-		      $.session.set('cache_coin',strs[2]);
-			e.href = "/member.html?"+strs[0]+"&"+strs[1]+"&"+strs[2];//要访问的网址 
+		      var code = strs[0];
+		      var state = strs[1];
+		      alert(code);
+		      alert(state);
+		      $.ajax({
+					url:'/getweixininfo',
+					type:'post',
+					dataType:'json',
+					data:{'code':code},
+					success:function(data){
+						$.session.set('nickname',data.nickname);
+					    $.session.set('headimg',data.headimg);
+					    $.session.set('cache_coin',data.cache_coin);
+					}
+				});
+		      var nickname1 = $.session.get('nickname');
+		      var headimg1 = $.session.get('headimg');
+		      var cache_coin1 = $.session.get('cache_coin');
+			e.href = "/member.html?"+nickname1+"&"+nickname1+"&"+nickname1;//要访问的网址 
 		}
 	   
 	   }   
