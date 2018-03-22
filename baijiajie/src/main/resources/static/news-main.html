@@ -159,13 +159,16 @@
 	
 	<script src="js/jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquerysession.js"></script>
-	<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/globle.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/navtab.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/template.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/news.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
+	
+	$(function (){	
+		var url = location.search; //获取url中"?"符后的字串    
+		if (url.indexOf("?") != -1) {   
+		var str = url.substr(1);   
+		alert(str);
+		}
+
+		});
 	var nickname1 = $.session.get('nickname');
     var headimg1 = $.session.get('headimg');
     var cache_coin1 = $.session.get('cache_coin');

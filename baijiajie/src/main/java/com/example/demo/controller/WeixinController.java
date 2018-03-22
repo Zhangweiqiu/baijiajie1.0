@@ -8,11 +8,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.weixinmodel.message.TextMessage;
@@ -109,7 +111,6 @@ public class WeixinController {
 		//推送事件类型
 		String eventType = null;
 		String code = null;
-		System.out.println(fromUserName+"11111");
 //		//获取个人信息并进行储存
 		String at = GetToken.accessToken.getToken();
 //		int result = 0 ;
@@ -122,14 +123,14 @@ public class WeixinController {
 //			}
 //		}
 		
-		
 		String url2 = UserInfo.getUserMessage(at, fromUserName);
 		JSONObject jsonObject = WeixinUtil.httpRequest(url2, "GET", null);
 		if(jsonObject != null) {
 			nickname = jsonObject.getString("nickname");
+			System.out.println(nickname);
 			headimgurl = jsonObject.getString("headimgurl");	
 		}
-		Download.download(headimgurl, fromUserName+".jpg", "C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.24-windows-x64\\apache-tomcat-8.5.24\\webapps\\ROOT\\WEB-INF\\classes\\static\\headimg");
+//		Download.download(headimgurl, fromUserName+".jpg", "C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.24-windows-x64\\apache-tomcat-8.5.24\\webapps\\ROOT\\WEB-INF\\classes\\static\\headimg");
 		
 		eventType = map.get("Event");
 		if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_EVENT)) {
@@ -140,7 +141,6 @@ public class WeixinController {
 				userinfoService.addUser(fromUserName, nickname, fromUserName+".jpg", father);
 				int result = 0 ;
 				if(at != null) {
-					System.out.println("11111");
 					com.example.demo.model.weixinmodel.UserInfo u = userinfoService.findUser(fromUserName);
 					CreateMenu createMenu = new CreateMenu();
 					result = menuService.createMenu(createMenu.getMenu(),at);
@@ -160,7 +160,6 @@ public class WeixinController {
 				
 				String eventKey = map.get("EventKey");
 				if(eventKey.equals("11")) {
-					System.out.println(code+"qqqqqqqq");
 					respContent = "【享来介】\n" + 
                 			"火爆上线，实力招商！\n" + 
                 			"享来介条机构！百家网贷平台！！\n" + 
@@ -189,7 +188,7 @@ public class WeixinController {
 		}else{
 				respContent = "欢迎您加入享来介大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]\r\n";
 		}
-		
+		System.out.println(fromUserName);
 		//回复消息
 		TextMessage tm = new TextMessage();
 		tm.setToUserName(fromUserName);
@@ -209,11 +208,11 @@ public class WeixinController {
 			if(eventType.equals(MessageUtil.EVENT_TYPE_CLICK) ) {
 				if(json != null) {
 					String url3 = qrcodeService.qrcode_get_url.replace("TICKET", json.getString("ticket"));
-					Download.download(url3, fromUserName+".jpg", "C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.24-windows-x64\\apache-tomcat-8.5.24\\webapps\\ROOT\\WEB-INF\\classes\\static\\qrcode");
+		//			Download.download(url3, fromUserName+".jpg", "C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.24-windows-x64\\apache-tomcat-8.5.24\\webapps\\ROOT\\WEB-INF\\classes\\static\\qrcode");
 					com.example.demo.model.weixinmodel.UserInfo u = userinfoService.findUser(fromUserName);
-					respContent += "http://123.207.111.95/sharing.html?"+u.getNickname()+"&"+u.getheadimgurl()+"&"+u.getMoney()+" \">【 查看我的推广海报】</a>\n" + 
+					respContent += "http://b4e79a33.ngrok.io/sharing.html?"+u.getNickname()+"&"+u.getheadimgurl()+"&"+u.getMoney()+" \">【 查看我的推广海报】</a>\n" + 
 		        			"\n"+
-		        			" <a href=\"http://123.207.111.95/piaoq.html?openid="+u.getOpenid()+"\">【 查看我的分享链接】</a>\n";
+		        			" <a href=\"http://b4e79a33.ngrok.io/piaoq.html?openid="+u.getOpenid()+"\">【 查看我的分享链接】</a>\n";
 				}else {
 					respContent +=" \">【 查看我的推广海报】</a>\n" + 
 		        			"\n"+
@@ -234,20 +233,25 @@ public class WeixinController {
 		out.close();
 	}
 	
-	@PostMapping(value="/getweixininfo")
-	public Map<String,Object> getweixininfo(String code) {
-		String get_access_token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?"
-                + "appid=wxc82f3a1b0a17373d"
-                + "&secret=fee5fcfe97328d8c0c47b3a4e443513f"
-                + "&code=CODE&grant_type=authorization_code";
-		get_access_token_url = get_access_token_url.replace("CODE", code);
-		JSONObject jsonObject = WeixinUtil.httpRequest(get_access_token_url, "GET", null);
-		String openid = jsonObject.getString("openid");
-		com.example.demo.model.weixinmodel.UserInfo u = userinfoService.findUser(openid);
-		Map<String,Object> map = new HashMap<>();
-		map.put("nickname", u.getNickname());
-		map.put("headimg", u.getHeadimgurl());
-		map.put("cache_coin", u.getMoney());
-		return map;
+	 @RequestMapping(value="/vote.do")
+	public void getweixininfo(@RequestParam(name="code",required=false)String code,@RequestParam(name="state")String state,HttpServletResponse res,HttpServletRequest req) throws IOException {
+		
+		 System.out.println("-----------------------------收到请求，请求数据为："+code+"-----------------------"+state);
+			String get_access_token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?"
+	                + "appid=wx35589b0ee9272c4b"
+	                + "&secret=436a53ca7750e945faaf12f098f7894d"
+	                + "&code=CODE&grant_type=authorization_code";
+			get_access_token_url = get_access_token_url.replace("CODE", code);
+			JSONObject jsonObject = WeixinUtil.httpRequest(get_access_token_url, "GET", null);
+			String openid = jsonObject.getString("openid");
+			String access_token = jsonObject.getString("access_token");
+			res.sendRedirect("news-main.html?"+openid); 
+//			System.out.println("你的网名是:"+jsonObject.getString("nickname"));
+//			com.example.demo.model.weixinmodel.UserInfo u = userinfoService.findUser(openid);
+//			Map<String,Object> map = new HashMap<>();
+//			map.put("nickname", u.getNickname());
+//			map.put("headimg", u.getHeadimgurl());
+//			map.put("cache_coin", u.getMoney());
+//			return map;
 	}
 }

@@ -715,59 +715,45 @@
 	</div>
 
 
-<script src="./首页_files/navtab.js.下载" type="text/javascript" charset="utf-8"></script>
-<script src="./首页_files/template.js.下载" type="text/javascript" charset="utf-8"></script>
-<script src="./首页_files/common.js.下载" type="text/javascript" charset="utf-8"></script>
-<script src="./首页_files/jquery-3.1.0.min.js.下载" type="text/javascript" charset="utf-8"></script>
-<script src="./首页_files/jquery.lazyload.js.下载" type="text/javascript" charset="utf-8"></script>
-<script src="./首页_files/globle.js.下载" type="text/javascript" charset="utf-8"></script>
+
 
 <!--<script src="upjs/html2canvas.js" type="text/javascript" charset="utf-8"></script>-->
 
 
-<script src="./首页_files/home.js.下载" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="./首页_files/jweixin-1.0.0.js.下载"></script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script src="js/jquerysession.js"></script>
 
-<script type="text/javascript" src="js/globle.js"></script>
-<script type="text/javascript" src="js/common.js"></script>
-<script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
-<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-<script src="/js/jquery.range.js"></script>
-<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script src="/js/jquerysession.js"></script>
+
 
 </body>
 <script>
 
-	 function huiyuan(e) {
-		 var url = location.search; //获取url中"?"符后的字串    
-		   if (url.indexOf("?") != -1) {   
-		      var str = url.substr(1);   
-		      strs = str.split("&");
-		      var code = strs[0];
-		      var state = strs[1];
-		      alert(code);
-		      alert(state);
-		      $.ajax({
-					url:'/getweixininfo',
-					type:'post',
-					dataType:'json',
-					data:{'code':code},
-					success:function(data){
-						$.session.set('nickname',data.nickname);
-					    $.session.set('headimg',data.headimg);
-					    $.session.set('cache_coin',data.cache_coin);
-					}
-				});
-		      var nickname1 = $.session.get('nickname');
-		      var headimg1 = $.session.get('headimg');
-		      var cache_coin1 = $.session.get('cache_coin');
-			e.href = "/member.html?"+nickname1+"&"+nickname1+"&"+nickname1;//要访问的网址 
-		}
-	   
-	   }   
 
+$(function (){	
+	var url = location.search; //获取url中"?"符后的字串    
+	if (url.indexOf("?") != -1) {   
+	var str = url.substr(1);   
+		strs = str.split("&");
+		var code = strs[0];
+		var state = strs[1];
+		$.ajax({
+			url:'/getweixininfo',
+			type:'post',
+			dataType:'json',
+			data:{'code':code},
+			success:function(data){
+				$.session.set('nickname',data.nickname);
+				$.session.set('headimg',data.headimg);
+				$.session.set('cache_coin',data.cache_coin);
+			}
+		});
+		 var nickname1 = $.session.get('nickname');
+		 var headimg1 = $.session.get('headimg');
+		var cache_coin1 = $.session.get('cache_coin');
+			
+	}
+
+	});
 
 	var user;
 	window.onload = ShowCount(); 
@@ -846,7 +832,9 @@
 			$.session.set('tuiso',$("#age-slider").val());
 			window.location.href = "/百家放款.html";
 			});
- 	
+ 	function huiyuan(e) {
+		 e.href = "/member.html?"+nickname1+"&"+nickname1+"&"+nickname1;//要访问的网址 
+	 }
 </script>
 
 </html>

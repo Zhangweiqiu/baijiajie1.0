@@ -47,8 +47,8 @@ public class CreateMenu {
 		btn22.setKey("22");
 		btn22.setType("view");
 		//String reurl = URLEncoder.encode("http://123.207.111.95/首页.html","utf-8");
-		String reurl ="http://123.207.111.95/首页.html";
-		btn22.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx04a54d6d3c808fbf&redirect_uri="+reurl+"&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect");
+		String reurl =URLEncoder.encode("http://22088189.ngrok.io/vote.do","utf-8");
+		btn22.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx35589b0ee9272c4b&redirect_uri="+reurl+"&response_type=code&scope=snsapi_base&state=STATE&connect_redirect=1#wechat_redirect");
 		
 		CommonButton btn23 = new CommonButton(); 
 		btn23.setName("✅人工马上审核");
