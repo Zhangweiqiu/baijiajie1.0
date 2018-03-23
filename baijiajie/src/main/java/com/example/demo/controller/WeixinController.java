@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.weixinmodel.message.TextMessage;
 import com.example.demo.others.CheckUtil;
 import com.example.demo.others.CreateMenu;
-import com.example.demo.others.Download;
 import com.example.demo.others.GetToken;
 import com.example.demo.others.UserInfo;
 import com.example.demo.service.weixin.MenuService;
@@ -234,8 +234,7 @@ public class WeixinController {
 	}
 	
 	 @RequestMapping(value="/vote.do")
-	public void getweixininfo(@RequestParam(name="code",required=false)String code,@RequestParam(name="state")String state,HttpServletResponse res,HttpServletRequest req) throws IOException {
-		
+	public void getweixininfo(@RequestParam(name="code",required=false)String code,@RequestParam(name="state")String state,HttpServletResponse res) throws IOException {
 		 System.out.println("-----------------------------收到请求，请求数据为："+code+"-----------------------"+state);
 			String get_access_token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?"
 	                + "appid=wx35589b0ee9272c4b"
@@ -244,14 +243,18 @@ public class WeixinController {
 			get_access_token_url = get_access_token_url.replace("CODE", code);
 			JSONObject jsonObject = WeixinUtil.httpRequest(get_access_token_url, "GET", null);
 			String openid = jsonObject.getString("openid");
-			String access_token = jsonObject.getString("access_token");
-			res.sendRedirect("news-main.html?"+openid); 
-//			System.out.println("你的网名是:"+jsonObject.getString("nickname"));
-//			com.example.demo.model.weixinmodel.UserInfo u = userinfoService.findUser(openid);
-//			Map<String,Object> map = new HashMap<>();
-//			map.put("nickname", u.getNickname());
-//			map.put("headimg", u.getHeadimgurl());
-//			map.put("cache_coin", u.getMoney());
-//			return map;
+			res.setCharacterEncoding("utf-8");
+			String message = URLEncoder.encode("首页","utf-8");
+			res.sendRedirect(message+".html?"+openid);		
 	}
+	 
+	 @RequestMapping("/getweixininfo")
+	 public Map<String,Object> searchInfo(String openId){
+		 Map<String,Object> map = new HashMap<>();
+		 com.example.demo.model.weixinmodel.UserInfo u = userinfoService.findUser(openId);
+		 map.put("nickname", u.getNickname());
+		 map.put("headimg", u.getHeadimgurl());
+		 map.put("cache_coin", u.getMoney());
+		 return map;
+	 }
 }
