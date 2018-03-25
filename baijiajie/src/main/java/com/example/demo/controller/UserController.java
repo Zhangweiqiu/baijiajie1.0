@@ -53,7 +53,7 @@ public class UserController {
     public void upload(@RequestParam("file") MultipartFile file,@PathVariable String phone) {
         if (!file.isEmpty()) {
         	str[0] = file.getOriginalFilename();
-            System.out.println(str[0]);
+            System.out.println(str[0]); 
         	System.out.println(phone+"-------------------------------");
             try {
             	File nfile = new File("C:\\Users\\Administrator\\Desktop\\pics\\"+phone+file.getOriginalFilename());
