@@ -169,16 +169,13 @@
 		}
 
 		});
-	var nickname1 = $.session.get('nickname');
-    var headimg1 = $.session.get('headimg');
-    var cache_coin1 = $.session.get('cache_coin');
 	function huiyuan(e) {
-			e.href = "/member.html?"+nickname1+"&"+headimg1+"&"+cache_coin1;//要访问的网址 
+			e.href = "/member.html";//要访问的网址 
 		
 	  
 	  }  
 	function shouye(e) {
-		e.href = "/首页.html?"+nickname1+"&"+headimg1+"&"+cache_coin1;//要访问的网址 
+		e.href = "/首页.html?"+$.session.get("openid");//要访问的网址 
 	
  
  }   

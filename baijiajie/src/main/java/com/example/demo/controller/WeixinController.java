@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.weixinmodel.message.TextMessage;
 import com.example.demo.others.CheckUtil;
 import com.example.demo.others.CreateMenu;
+import com.example.demo.others.Download;
 import com.example.demo.others.GetToken;
 import com.example.demo.others.UserInfo;
 import com.example.demo.service.weixin.MenuService;
@@ -130,7 +131,7 @@ public class WeixinController {
 			System.out.println(nickname);
 			headimgurl = jsonObject.getString("headimgurl");	
 		}
-//		Download.download(headimgurl, fromUserName+".jpg", "C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.24-windows-x64\\apache-tomcat-8.5.24\\webapps\\ROOT\\WEB-INF\\classes\\static\\headimg");
+		Download.download(headimgurl, fromUserName+".jpg", "C:\\Users\\Administrator\\Desktop\\apache-tomcat-8080\\apache-tomcat-8.5.24\\webapps\\ROOT\\WEB-INF\\classes\\static\\headimg");
 		
 		eventType = map.get("Event");
 		if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_EVENT)) {
@@ -208,11 +209,11 @@ public class WeixinController {
 			if(eventType.equals(MessageUtil.EVENT_TYPE_CLICK) ) {
 				if(json != null) {
 					String url3 = qrcodeService.qrcode_get_url.replace("TICKET", json.getString("ticket"));
-		//			Download.download(url3, fromUserName+".jpg", "C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.24-windows-x64\\apache-tomcat-8.5.24\\webapps\\ROOT\\WEB-INF\\classes\\static\\qrcode");
+					Download.download(url3, fromUserName+".jpg", "C:\\Users\\Administrator\\Desktop\\apache-tomcat-8080\\apache-tomcat-8.5.24\\webapps\\ROOT\\WEB-INF\\classes\\static\\qrcode");
 					com.example.demo.model.weixinmodel.UserInfo u = userinfoService.findUser(fromUserName);
-					respContent += "http://b4e79a33.ngrok.io/sharing.html?"+u.getNickname()+"&"+u.getheadimgurl()+"&"+u.getMoney()+" \">【 查看我的推广海报】</a>\n" + 
+					respContent += "http://www.juhuaihua.cn/sharing.html?"+u.getNickname()+"&"+u.getheadimgurl()+"&"+u.getMoney()+" \">【 查看我的推广海报】</a>\n" + 
 		        			"\n"+
-		        			" <a href=\"http://b4e79a33.ngrok.io/piaoq.html?openid="+u.getOpenid()+"\">【 查看我的分享链接】</a>\n";
+		        			" <a href=\"http://www.juhuaihua.cn/piaoq.html?openid="+u.getOpenid()+"\">【 查看我的分享链接】</a>\n";
 				}else {
 					respContent +=" \">【 查看我的推广海报】</a>\n" + 
 		        			"\n"+
@@ -237,8 +238,8 @@ public class WeixinController {
 	public void getweixininfo(@RequestParam(name="code",required=false)String code,@RequestParam(name="state")String state,HttpServletResponse res) throws IOException {
 		 System.out.println("-----------------------------收到请求，请求数据为："+code+"-----------------------"+state);
 			String get_access_token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?"
-	                + "appid=wx35589b0ee9272c4b"
-	                + "&secret=436a53ca7750e945faaf12f098f7894d"
+	                + "appid=wxc82f3a1b0a17373d"
+	                + "&secret=fee5fcfe97328d8c0c47b3a4e443513f"
 	                + "&code=CODE&grant_type=authorization_code";
 			get_access_token_url = get_access_token_url.replace("CODE", code);
 			JSONObject jsonObject = WeixinUtil.httpRequest(get_access_token_url, "GET", null);
@@ -252,6 +253,13 @@ public class WeixinController {
 	 public Map<String,Object> searchInfo(String openId){
 		 Map<String,Object> map = new HashMap<>();
 		 com.example.demo.model.weixinmodel.UserInfo u = userinfoService.findUser(openId);
+		 String phone = u.getPhone();
+		 if(phone==null||phone.equals("")) {
+			 map.put("state", "0");
+		 }
+		 else
+			 map.put("state", "1");
+		 System.out.println(u.getNickname());
 		 map.put("nickname", u.getNickname());
 		 map.put("headimg", u.getHeadimgurl());
 		 map.put("cache_coin", u.getMoney());

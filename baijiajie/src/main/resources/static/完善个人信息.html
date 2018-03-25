@@ -68,7 +68,7 @@
         <p>正在上传中</p>
     </div>
     <header class="mui-bar mui-bar-nav headerg ">
-        <a href="首页.html" id="clearhc" class="mui-icon mui-icon-left-nav mui-pull-left"><span style=" font-size: 15px;font-family: 'microsoft yahei';vertical-align: inherit;">返回首页</span></a>
+        <a  href=""   onclick="shouye(this)"  class="mui-icon mui-icon-left-nav mui-pull-left"><span style=" font-size: 15px;font-family: 'microsoft yahei';vertical-align: inherit;">返回首页</span></a>
         <h1 class="mui-title">完善个人借款信息</h1>
     </header>
     <div class="mui-content mui-bjj">
@@ -151,7 +151,7 @@
                     
                     <em class="iconfont icon-shengfen"></em>
                     <select id="address_s" name="address_s" class="bbj-jdb">
-							<option value="" selected="" disabled="">请选择</option>
+							<option value="" selected="" disabled="">请选择地址</option>
 							<option value="1">北京</option>
 							<option value="-1">天津</option>
 							<option value="1">河北</option>
@@ -214,7 +214,7 @@
                     <em class="bbj-liti" style="color:#D0D6D6">如何获取服务密码 ?</em>
                     <p style="display: none;">服务密码忘记无法查询通过网上营业厅重新设置。输入的手机号码后，点击“获取随机码”（该随机码10分钟内有效），再将手机收到的随机码输入后即可，新密码会以短信方式发送至手机。打10086人工服务台，提供身份证号重新设置；持本人身份证到当地营业厅重新设置。</p>
                 </dd>-->
-                <dd>
+                <!--<dd>
                    
                     <em class="iconfont icon-yaoqing"></em>
                     <div class="s">
@@ -222,7 +222,7 @@
                     </div>
 
                     <input type="text" style="display: none;" placeholder="邀请人" disabled="disabled" />
-                </dd>
+                </dd>  -->
 				
 				<dd>
             
@@ -528,7 +528,8 @@
     	    };
     	};
     	
-    	var user =JSON.parse($.session.get('user'));
+    	
+		
       $(document).ready(function(){
     	  $('#age-slider').jRange({
               from: 0,
@@ -549,7 +550,7 @@
     	          var formData = new FormData(this);
     	          $.ajax({
     	            type: form.attr('method'),
-    	            url: form.attr('action')+user.phone,
+    	            url: form.attr('action')+$.session.get('phone'),
     	            data: formData,
     	            mimeType: "multipart/form-data",
     	            contentType: false,
@@ -571,7 +572,7 @@
   	          var formData = new FormData(this);
   	          $.ajax({
   	            type: form.attr('method'),
-  	            url: form.attr('action')+user.phone,
+  	            url: form.attr('action')+$.session.get('phone'),
   	            data: formData,
   	            mimeType: "multipart/form-data",
   	            contentType: false,
@@ -632,22 +633,19 @@
         	});
         
 
-		var userj;
-		var user;
-		userj = $.session.get('user');
-		user = $.parseJSON( userj );
 		
 	
         var $modal = $('#myModal');
 			$("#reggo").click(function(){
-				
+				alert($.session.get('phone'));
+					alert($.session.get('psw'));
 				$.ajax({
 					url:'/addInfo',
 					type:'post',
 					dataType:'json',
-					data:{phone:user.phone,age:$("#age").val(),edu:$("#jdbhk").val(),fuzhai:$("#jdbfz").val(),
+					data:{phone:$.session.get('phone'),age:$("#age").val(),edu:$("#jdbhk").val(),fuzhai:$("#jdbfz").val(),
 						  huabei:huabei.options[huabeiindex].text,jiedaibao:sfjdb.options[sfjdbindex].text,
-						  name:$("#name").val(),password:user.password,
+						  name:$("#name").val(),password:$.session.get('psw'),
 						  qq:$("#qq").val(),state:1,zhima:$("#zhima").val(),
 						  address:address_s.options[address_sindex].text},
 					success:function(data){
@@ -694,6 +692,12 @@
 			});
 
         });		
+      
+      function shouye(e) {
+  		e.href = "/首页.html?"+$.session.get("openid");//要访问的网址 
+  	
+   
+   }   
     </script>
 </body>
 

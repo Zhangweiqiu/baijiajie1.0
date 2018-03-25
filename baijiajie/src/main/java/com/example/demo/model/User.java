@@ -149,4 +149,54 @@ public class User {
 	private String qrcode;
 	
 	private Integer state;
+	
+	private String shenqingshijian;
+	
+	private String source;
+	
+	private String wxnumber;
+	
+	private String idcard;
+	
+	public String getShenqingshijian() {
+		return shenqingshijian;
+	}
+
+	public void setShenqingshijian(String shenqingshijian) {
+		this.shenqingshijian = shenqingshijian;
+	}
+
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+	public String getWxnumber() {
+		return wxnumber;
+	}
+
+	public void setWxnumber(String wxnumber) {
+		this.wxnumber = wxnumber;
+	}
+
+	public String getIdcard() {
+		return idcard;
+	}
+
+	public void setIdcard(String idcard) {
+		this.idcard = idcard;
+	}
+
+	public String getMoney() {
+		return money;
+	}
+
+	public void setMoney(String money) {
+		this.money = money;
+	}
+
+	private String money;
 }

@@ -256,7 +256,7 @@ h2{text-align: center;/* line-height: 210px;*/
 		   					<img src="./百家放款_files/bbjlogo.png">
 		   				</i>
 		   				<dl>
-		   					<em>百家借-闪贷</em>
+		   					<em>享来介-闪贷</em>
 		   					<em>最高额度：3000</em>
 		   					<em>7-14天　闪电放款</em>
 		   				</dl>
@@ -267,7 +267,7 @@ h2{text-align: center;/* line-height: 210px;*/
 		   					<img src="./百家放款_files/bbjlogo.png">
 		   				</i>
 		   				<dl>
-		   					<em>百家借-米么贷</em>
+		   					<em>享来介-米么贷</em>
 		   					<em>最高额度：100000</em>
 		   					<em>超大额　独立额度</em>
 		   					<em>高端人士专享</em>
@@ -564,15 +564,12 @@ h2{text-align: center;/* line-height: 210px;*/
 </body>
 <script>
 
-var nickname1 = $.session.get('nickname');
-var headimg1 = $.session.get('headimg');
-var cache_coin1 = $.session.get('cache_coin');
 function huiyuan(e) {
-		e.href = "/member.html?"+nickname1+"&"+headimg1+"&"+cache_coin1;//要访问的网址 
+		e.href = "/member.html";//要访问的网址 
  
  }   
 function shouye(e) {
-	e.href = "/首页.html?"+nickname1+"&"+headimg1+"&"+cache_coin1;//要访问的网址 
+	e.href = "/首页.html?"+$.session.get("openid");//要访问的网址 
 
 
 }   

@@ -84,10 +84,13 @@ var user
 			datatype:'json',
 			data:{"phone":$("#mobile").val(),"password":$("#password").val()},
 			success:function(data){
+				alert("33333333333333");
 				if(data.state){
+					alert("33333333333333");
 					user = JSON.stringify(data.user);//将json对象转换成json对符串
 					$.session.set('user',user);
-					window.location.href = data.url;
+					alert($.session.get("openid")+"2222");
+					window.location.href = data.url+"?"+$.session.get("openid");
 				}else{
 					alert("密码或账号错误，请重新登入");
 					window.location.href = "/登录.html";

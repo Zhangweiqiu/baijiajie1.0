@@ -6,4 +6,6 @@ import com.example.demo.model.User;
 
 public interface UserDao  extends CrudRepository<User,String>{
 
+	User findByPhone(String phone);
+
 }

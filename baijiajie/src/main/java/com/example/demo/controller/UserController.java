@@ -34,14 +34,14 @@ public class UserController {
 	}
 	
 	@RequestMapping("/checkInfo")
-	public Map<String,Object> checkInfo(String phone){
-		System.out.println(phone);
-		return userService.checkInfo(phone);
+	public Map<String,Object> checkInfo(String openid){
+		System.out.println(openid);
+		return userService.checkInfo(openid);
 	}
 	
 	@RequestMapping("/addUser")
-	public Map<String,Object> addUser(String phone,String password) {
-		return userService.addUser(phone, password);
+	public Map<String,Object> addUser(String phone,String password,String openid) {
+		return userService.addUser(phone, password,openid);
 	}
 	
 	@RequestMapping("/modifyPsw")
@@ -119,5 +119,15 @@ public class UserController {
 		nuser.setZhima(zhima);
 		nuser.setAddress(address);
 		return userService.addInfo(nuser);
+	}
+	
+	@RequestMapping("/yanzheng")
+	public Map<String,Object> yanzheng(String mobile){
+		return userService.yanzhengma(mobile);
+	}
+	
+	@RequestMapping("/addshenqingtime")
+	public Map<String,Object> addshenqingtime(String phone){
+		return userService.addshenqingtime(phone);
 	}
 }
