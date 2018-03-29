@@ -771,9 +771,10 @@
 	
 	
 	function checkInfo(){
-		if($.session.get('state')=="0")
+		var state = $.session.get('state');
+		if(state=="0")
 			window.location.href = "/reg.html";
-		else{
+		else if(state=="1"){
 					$('.follow_coverc2').fadeIn();
 			 		$('.ckeck_alert').fadeIn();
 			}
@@ -811,10 +812,6 @@
  			success:function(data){
  				if(data.state){
  					if(data.Info == 0){
- 						$.session.set('phone',data.phone);
- 						$.session.set('psw',data.psw);
- 						alert($.session.get('phone'));
- 						alert($.session.get('psw'));
  						window.location.href=data.url;
  					}else{
  						document.getElementById('modelback').style.display='block';
@@ -844,28 +841,28 @@
  		var state = $.session.get('state');
  		if(state=="1")
 		 	e.href = "/member.html";//要访问的网址 
-		 else
+		 else if(state=="0")
 			 e.href = "/reg.html";
 	 }
  	function xinkouzi(e) {
  		var state = $.session.get('state');
  		if(state=="1")
 		 	e.href = "/news-main.html";//要访问的网址 
-		 else
+		 else if(state=="0")
 			 e.href = "/reg.html";
 	 }
  	function jietiao(e) {
  		var state = $.session.get('state');
  		if(state=="1")
 		 	e.href = "/借条.html";//要访问的网址 
-		 else
+		 else if(state=="0")
 			 e.href = "/reg.html";
 	 }
  	function wangdai(e) {
  		var state = $.session.get('state');
  		if(state=="1")
 		 	e.href = "/百家放款.html";//要访问的网址 
-		 else
+		 else if(state=="0")
 			 e.href = "/reg.html";
 	 }
 </script>

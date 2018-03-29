@@ -2,7 +2,7 @@
 <!-- saved from url=(0070)http://a.rrjiekuan.com/w_bjj/count-down.html?is_auto=1&send_c_limit=20 -->
 <html style="font-size: 32.1px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
-    <title>百家放款</title>
+    <title>借条</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
    	<link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="./百家放款_files/mui.min.css" rel="stylesheet">
@@ -84,7 +84,7 @@ h2{text-align: center;/* line-height: 210px;*/
 	.list_k li:after{content: "";display: block;clear: both;visibility: hidden;}
 	.button{background: #00a0e6;color: #FFFFFF;border-radius: 0;border: 0;cursor: pointer;-webkit-bo-shadow: 0 1px 6px #ccc;bo-shadow: 0 1px 6px #ccc;}
 	.text_bo{text-align: center;font-size: 15px;background: #f5f5f5;padding-top: 20px;}
-	.text_btn{padding: 20px 0;}
+	.text_btn{padding: 50px 0;}
 	.text_bo li{color: #5f5e5e;}
 	.text_btn:after{content: "";display: block;clear: both;visibility: hidden;}
 	.btn_color{background: #fd6164;color: #FFFFFF;border-radius: 0;border: 0;cursor: pointer;width: 110px;padding: 10px 0;-webkit-bo-shadow: 0 1px 6px #ccc;bo-shadow: 0 1px 6px #ccc;}
@@ -285,8 +285,8 @@ h2{text-align: center;/* line-height: 210px;*/
 		   			<li>放款机构与您联系</li>
 		   			<li>供您择优选择,请放心添加</li>
 		   			<div class="text_btn">
-		   				<button type="button" class="btn_color">查看授信机构</button>
-		   				<a href="首页.html"><button type="button" class="btn_color">返回首页</button></a>
+		   				<a href=""   onclick="shouye(this)"><button type="button" class="btn_color">查看授信机构</button></a>
+		   				<a href=""   onclick="shouye(this)"><button type="button" class="btn_color">返回首页</button></a>
 		   			</div>
 		   		</div>
 		   		
@@ -568,11 +568,7 @@ function huiyuan(e) {
 		e.href = "/member.html";//要访问的网址 
  
  }   
-function shouye(e) {
-	e.href = "/首页.html?"+$.session.get("openid");//要访问的网址 
 
-
-}   
  
 		$.ajax({
 			url:'/addBInfoByPeriod',
@@ -645,6 +641,10 @@ function shouye(e) {
 	        });
 	}  
 
-
+	function shouye(e) {
+		e.href = "/首页.html?"+$.session.get("openid");//要访问的网址 
+	
+ 
+ }   
 </script>
 </html>

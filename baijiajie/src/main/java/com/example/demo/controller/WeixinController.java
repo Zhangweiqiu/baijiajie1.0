@@ -70,7 +70,7 @@ public class WeixinController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	
 		
 //		String at = GetToken.accessToken.getToken();
 //		int result = 0 ;
@@ -114,15 +114,19 @@ public class WeixinController {
 		String code = null;
 //		//获取个人信息并进行储存
 		String at = GetToken.accessToken.getToken();
-//		int result = 0 ;
-//		if(at != null) {
-//			result = menuService.createMenu(CreateMenu.getMenu(fromUserName), at);
-//			if(0==result) {
-//				System.out.println("菜单创建成功！");
-//			}else {
-//				System.out.println("菜单创建失败,错误码：" + result);
-//			}
-//		}
+		int result = 0 ;
+		if(at != null) {
+			com.example.demo.model.weixinmodel.UserInfo u = userinfoService.findUser(fromUserName);
+			CreateMenu createMenu = new CreateMenu();
+			result = menuService.createMenu(createMenu.getMenu(),at);
+			//code = request.getParameter("code");
+			
+			if(0==result) {
+				System.out.println("菜单创建成功！");
+			}else {
+				System.out.println("菜单创建失败,错误码：" + result);
+			}
+		}
 		
 		String url2 = UserInfo.getUserMessage(at, fromUserName);
 		JSONObject jsonObject = WeixinUtil.httpRequest(url2, "GET", null);
@@ -140,19 +144,7 @@ public class WeixinController {
 				father = map.get("EventKey");
 				father = father.replace("qrscene_", "");
 				userinfoService.addUser(fromUserName, nickname, fromUserName+".jpg", father);
-				int result = 0 ;
-				if(at != null) {
-					com.example.demo.model.weixinmodel.UserInfo u = userinfoService.findUser(fromUserName);
-					CreateMenu createMenu = new CreateMenu();
-					result = menuService.createMenu(createMenu.getMenu(),at);
-					//code = request.getParameter("code");
-					
-					if(0==result) {
-						System.out.println("菜单创建成功！");
-					}else {
-						System.out.println("菜单创建失败,错误码：" + result);
-					}
-				}
+			
 			}
 			else if(eventType.equals(MessageUtil.EVENT_TYPE_SCAN)) {//已关注群体，刷二维码
 				respContent = "欢迎您加入享来介大家庭，点击下方的菜单的【我要赚钱】，轻松邀请好友，就能让您轻松躺赚收益[调皮]";

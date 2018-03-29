@@ -56,8 +56,6 @@ public class UserService {
 				map.put("state", true);
 				map.put("Info", 0);
 				map.put("user", user);
-				map.put("phone", user.getPhone());
-				map.put("psw", user.getPassword());
 				map.put("url", "/完善个人信息.html");
 			}else {
 				map.put("state", true);
@@ -71,6 +69,7 @@ public class UserService {
 	}
 	
 	public Map<String,Object> addUser(String phone,String password,String openid){
+		System.out.println(openid);
 		User user = new User();
 		UserInfo userinfo = new UserInfo();
 		Map<String,Object> map = new HashMap<>();
@@ -83,6 +82,8 @@ public class UserService {
 			if(userDao.save(user) != null) {
 				userInfoDao.save(userinfo);
 				map.put("state", true);
+				map.put("phone", phone);
+				map.put("psw", password);
 				map.put("url", "/登录.html");
 			}else
 				map.put("state", false);

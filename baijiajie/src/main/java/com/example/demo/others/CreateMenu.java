@@ -40,7 +40,9 @@ public class CreateMenu {
 		CommonButton btn21 = new CommonButton(); 
 		btn21.setName("✅马上借款");
 		btn21.setKey("21");
-		btn21.setType("click");
+		btn21.setType("view");
+		String message = URLEncoder.encode("完善个人信息","utf-8");
+		btn21.setUrl("http://www.juhuaihua.cn/"+message+".html");
 		
 		CommonButton btn22 = new CommonButton(); 
 		btn22.setName("✅进入首页");

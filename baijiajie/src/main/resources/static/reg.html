@@ -99,15 +99,16 @@
         <!-- 遮罩层 -->
         <div class="link-area"><a href="登录.html" id="" class="loptrue">立即登录</a> <span class="spliter">|</span><a href="reg.html" id="loreg" class="loptrue loactive">注册账号</a> <span class="spliter">|</span> <a href="modify.html" id="forgetPassword">重置密码</a>
         </div>
-        <div class="tishiyu">
-            <p>老用户请通过重置密码设置密码<br>新用户请直接注册账号哦！</p>
-        </div>
-         <div class="layui-form-item">
-         	<p style="color: #000000; text-align: center;">有问题 联系客服</p>
-            <img style="width:40%; display: block; margin: auto; " src="picture/yuer.png"/>
-        </div>
-    </div>
-	
+         
+      <!--   <div class="tishiyu">	-->
+       <!--      <p>老用户请通过重置密码设置密码<br>新用户请直接注册账号哦！</p>	-->
+      <!--   </div>	-->
+      <!--    <div class="layui-form-item">	-->
+        <!--  	<p style="color: #000000; text-align: center;">有问题 联系客服</p>	-->
+         <!--    <img style="width:40%; display: block; margin: auto; " src="picture/yuer.png"/>	-->
+     <!--    </div>	-->
+ <!--    </div>	-->
+
 	<div class="follow_covercc follow_coverc1" >
 	</div>
 	    <div class="ckeck_alert  ckeck_alert1" > 
@@ -829,15 +830,17 @@
 		}
 		
 		
-		
+		var aaa=$.session.get("openid")
 		if(bool && ckeck&&bool2&&(sms_code1 ==yzm)){
 			$.ajax({
 				url:'/addUser',
 				type:'post',
 				dataType:'json',
-				data:{"phone":$("#mobile1").val(),"password":$("#password1").val(),"openid":$.session.get("openid")},
+				data:{"phone":$("#mobile1").val(),"password":$("#password1").val(),"openid":aaa},
 				success:function(data){
 					if(data.state){
+						$.session.set('phone',data.phone);
+ 						$.session.set('psw',data.psw);
 						alert("注册成功！");
 						window.location.href = data.url;
 					}else{

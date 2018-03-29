@@ -138,10 +138,10 @@
                 </dd>
                 <dd>
                     
-                    <em  class="iconfont icon-phone"></em>
-                    <input type="tel" name="phone" id="phone" readonly maxlength="11" placeholder="输入您的联系电话" />
+                  <em  class="iconfont icon-phone"></em>
+                    <input type="tel" name="phone" id="phone" readonly maxlength="11" />
 
-                </dd>
+                 </dd>
                 <dd>
                    
                     <em class="iconfont icon-zhimaxinyong"></em>
@@ -239,6 +239,7 @@
             
             <em class="iconfont icon-jiedai"></em>
           <!-- <input type="text" placeholder="有无必填" />-->
+          
             <select name="sfjdb" id="sfjdb" class="bbj-jdb">
 							<option value="" selected="" disabled="">请选择是否有借贷宝</option>
 							<option value="1">是</option>
@@ -466,10 +467,11 @@
     <script src="js/lrz.js" type="text/javascript" charset="utf-8"></script>
     
     <script type="text/javascript" src="/js/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/jquerysession.js"></script>
+<script src="js/jquerysession.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<script src="/js/jquery.range.js"></script>
     <script type="text/javascript">
+    $("#phone").val($.session.get('phone'));
        // mui.init()
 
 
@@ -637,8 +639,35 @@
 	
         var $modal = $('#myModal');
 			$("#reggo").click(function(){
-				alert($.session.get('phone'));
-					alert($.session.get('psw'));
+					if($("#name").val()==""||$("#name").val()==null){
+						alert("名字不能为空");
+						return false;
+						}
+					if($("#age").val()==""||$("#age").val()==null){
+						alert("年龄不能为空");
+						return false;
+						}
+						if($("#address_s").find("option:selected").text()=="请选择地址"){
+							alert("请选择地址");
+							return false;
+							}
+						if($("#huabei").find("option:selected").text()=="请选择是否有花呗"){
+							alert("请选择是否有花呗");
+							return false;
+							}
+					if($("#sfjdb").find("option:selected").text()=="请选择是否有借贷宝"){
+						alert("请选择是否有借贷宝");
+						return false;
+						}
+					if($("#name").val()==""||$("#name").val()==null){
+						alert("名字不能为空");
+						return false;
+						}
+					if($("#name").val()==""||$("#name").val()==null){
+						alert("名字不能为空");
+						return false;
+						}
+					
 				$.ajax({
 					url:'/addInfo',
 					type:'post',
